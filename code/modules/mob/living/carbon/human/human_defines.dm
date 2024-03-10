@@ -69,6 +69,7 @@
 		/mob/living/basic/parrot,
 		/mob/living/carbon/human,
 		/mob/living/simple_animal/slime,
+		/mob/living/basic/slime,
 	))
 	var/lastpuke = 0
 	var/account_id
