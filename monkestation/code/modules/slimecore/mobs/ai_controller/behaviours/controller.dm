@@ -2,11 +2,17 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
+		BB_BASIC_MOB_SCARED_ITEM = /obj/item/extinguisher,
+		BB_BASIC_MOB_STOP_FLEEING = TRUE
 	)
 
-	ai_movement = /datum/ai_movement/jps
+	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
+		//we try to flee first these flip flop based on flee state which is controlled by a componenet on the mob
+		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item,
+		/datum/ai_planning_subtree/flee_target,
+		//now we try to
+		/datum/ai_planning_subtree/simple_find_target/slime,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/slime,
 	)

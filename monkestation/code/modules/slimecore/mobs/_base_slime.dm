@@ -34,24 +34,30 @@
 	var/production_precent = 0.6
 	///our list of slime traits
 	var/list/slime_traits = list()
+	///used to help our name changes so we don't rename named slimes
+	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
 
 /mob/living/basic/slime/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SLIME, 0.5, -11)
-	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
+	AddElement(/datum/element/soft_landing)
+
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 	if(!current_color)
 		current_color = new /datum/slime_color/green
+
 	AddComponent(/datum/component/liquid_secretion, current_color.secretion_path, 10, 10 SECONDS, TYPE_PROC_REF(/mob/living/basic/slime, check_secretion))
+	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
+	AddComponent(/datum/component/scared_of_item, 5)
+
 	RegisterSignal(src, COMSIG_HUNGER_UPDATED, PROC_REF(hunger_updated))
+
 	update_slime_varience()
 
 /mob/living/basic/slime/proc/update_slime_varience()
 	if(slime_flags & ADULT_SLIME)
-		if(HAS_TRAIT(src, TRAIT_FEEDING))
-			icon_state = "grey adult slime eat"
-		else
-			icon_state = "grey adult slime"
+		icon_state = "grey adult slime"
 	else
 		if(HAS_TRAIT(src, TRAIT_FEEDING))
 			icon_state = "grey baby slime eat"
@@ -78,8 +84,17 @@
 	update_slime_varience()
 
 /mob/living/basic/slime/proc/add_trait(datum/slime_trait/added_trait)
-	slime_traits += new added_trait(src)
+	var/datum/slime_trait/new_trait = new added_trait
+	new_trait.on_add(src)
+	slime_traits += new_trait
 
 /mob/living/basic/slime/proc/remove_trait(datum/slime_trait/removed_trait)
 	slime_traits -= removed_trait
 	qdel(removed_trait)
+
+/mob/living/basic/slime/update_name()
+	if(slime_name_regex.Find(name))
+		number = rand(1, 1000)
+		name = "[current_color.name] [(slime_flags & ADULT_SLIME) ? "adult" : "baby"] slime ([number])"
+		real_name = name
+	return ..()

@@ -38,6 +38,6 @@
 	if(!trait_icon || !trait_icon_state)
 		return
 
-	var/mutable_appearance/slime_visual = mutable_appearance(trait_icon, trait_icon_state)
+	var/mutable_appearance/slime_visual = mutable_appearance(trait_icon, trait_icon_state, host.layer, host, host.plane)
 	slime_visual.color = host.current_color.slime_color
 	overlays += slime_visual
