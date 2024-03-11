@@ -8,4 +8,4 @@
 	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
 
 /obj/item/stock_parts/cell/emproof/slime/hypercharged
-	icon = 'monkestation/icons/mob/slimes.dmi'
+	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
