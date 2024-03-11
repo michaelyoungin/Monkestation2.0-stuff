@@ -104,4 +104,6 @@
 		return
 
 	living_target.apply_damage(damage_amount, damage_type, spread_damage = TRUE)
-	SEND_SIGNAL(parent, COMSIG_MOB_FEED, target, hunger_restore)
+
+	if(parent) // ??? I was getting runtimes for no parent but IDK how
+		SEND_SIGNAL(parent, COMSIG_MOB_FEED, target, hunger_restore)

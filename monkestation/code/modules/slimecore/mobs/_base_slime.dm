@@ -43,22 +43,30 @@
 	var/list/possible_color_mutations = list()
 
 	var/list/compiled_liked_foods = list()
+	///the in progress mutation used for descs
+	var/datum/slime_color/mutating_into
+	///this is our mutation chance
+	var/mutation_chance = 30
 
-/mob/living/basic/slime/Initialize(mapload)
+/mob/living/basic/slime/Initialize(mapload, datum/slime_color/passed_color)
 	. = ..()
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SLIME, 0.5, -11)
 	AddElement(/datum/element/soft_landing)
 
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
-	if(!current_color)
+	if(!passed_color)
 		current_color = new /datum/slime_color/grey
+	else
+		current_color = new passed_color
 
 	AddComponent(/datum/component/liquid_secretion, current_color.secretion_path, 10, 10 SECONDS, TYPE_PROC_REF(/mob/living/basic/slime, check_secretion))
 	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
 	AddComponent(/datum/component/scared_of_item, 5)
 
 	RegisterSignal(src, COMSIG_HUNGER_UPDATED, PROC_REF(hunger_updated))
+	RegisterSignal(src, COMSIG_MOB_OVERATE, PROC_REF(attempt_change))
+
 	for(var/datum/slime_mutation_data/listed as anything in current_color.possible_mutations)
 		var/datum/slime_mutation_data/data = new listed
 		data.on_add_to_slime(src)
@@ -113,7 +121,7 @@
 	SEND_SIGNAL(src, COMSIG_SECRETION_UPDATE, current_color.secretion_path, 10, 10 SECONDS)
 
 /mob/living/basic/slime/proc/check_secretion()
-	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME))
+	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME) || (slime_flags & MUTATING_SLIME))
 		return FALSE
 
 	if(hunger_precent < production_precent)
@@ -143,3 +151,92 @@
 		name = "[current_color.name] [(slime_flags & ADULT_SLIME) ? "adult" : "baby"] slime ([number])"
 		real_name = name
 	return ..()
+
+/mob/living/basic/slime/proc/start_split()
+	ai_controller.set_ai_status(AI_STATUS_OFF)
+	slime_flags |= SPLITTING_SLIME
+
+	visible_message(span_notice("[name] starts to flatten, it looks to be splitting."))
+
+	addtimer(CALLBACK(src, PROC_REF(finish_splitting)), 15 SECONDS)
+
+/mob/living/basic/slime/proc/finish_splitting()
+	SEND_SIGNAL(src, COMSIG_MOB_ADJUST_HUNGER, -200)
+	update_slime_varience()
+
+	slime_flags &= ~SPLITTING_SLIME
+	ai_controller.set_ai_status(AI_STATUS_ON)
+
+	var/mob/living/basic/slime/new_slime = new(loc, current_color.type)
+
+/mob/living/basic/slime/proc/start_mutating()
+	if(!pick_mutation())
+		return FALSE
+
+	ai_controller.set_ai_status(AI_STATUS_OFF)
+	visible_message(span_notice("[name] starts to ungulate, it looks to be mutating."))
+	slime_flags |= MUTATING_SLIME
+
+	var/matrix/ungulate_matrix = matrix(transform)
+	ungulate_matrix.Scale(1, 0.9)
+	var/matrix/base_matrix = matrix(transform)
+	var/base_pixel_y = pixel_y
+
+	animate(src, transform = ungulate_matrix, time = 0.1 SECONDS, easing = EASE_OUT, loop = -1)
+	animate(pixel_y = -1, time = 0.1 SECONDS, easing = EASE_OUT)
+	animate(transform = base_matrix, time = 0.1 SECONDS, easing = EASE_IN)
+	animate(pixel_y = base_pixel_y, time = 0.1 SECONDS, easing = EASE_IN)
+
+
+	addtimer(CALLBACK(src, PROC_REF(finish_mutating)), 30 SECONDS)
+	return TRUE
+
+/mob/living/basic/slime/proc/change_color(datum/slime_color/new_color)
+	QDEL_NULL(current_color)
+	current_color = new_color
+
+	update_slime_varience()
+
+	compiled_liked_foods = list()
+
+	QDEL_LIST(possible_color_mutations)
+	possible_color_mutations = list()
+
+	for(var/datum/slime_mutation_data/listed as anything in current_color.possible_mutations)
+		var/datum/slime_mutation_data/data = new listed
+		data.on_add_to_slime(src)
+		possible_color_mutations += data
+		if(length(data.needed_items))
+			compiled_liked_foods |= data.needed_items
+
+	recompile_ai_tree()
+
+/mob/living/basic/slime/proc/finish_mutating()
+	SEND_SIGNAL(src, COMSIG_MOB_ADJUST_HUNGER, -200)
+	change_color(mutating_into)
+
+	slime_flags &= ~MUTATING_SLIME
+	ai_controller.set_ai_status(AI_STATUS_ON)
+
+	animate(src) // empty animate to break ungulating
+
+/mob/living/basic/slime/proc/pick_mutation(random = FALSE)
+	var/list/valid_choices = list()
+	for(var/datum/slime_mutation_data/listed as anything in possible_color_mutations)
+		if(!random && !listed.can_mutate)
+			continue
+		valid_choices += listed
+		valid_choices[listed] = listed.weight
+	if(!length(valid_choices))
+		return FALSE
+
+	var/datum/slime_mutation_data/picked = pick_weight(valid_choices)
+	mutating_into = new picked.output
+	return TRUE
+
+/mob/living/basic/slime/proc/attempt_change(datum/source, hunger_precent)
+	if(prob(mutation_chance)) // we try to mutate 30% of the time
+		if(!start_mutating())
+			start_split()
+	else
+		start_split()
