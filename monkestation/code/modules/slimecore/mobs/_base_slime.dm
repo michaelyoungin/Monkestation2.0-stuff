@@ -36,6 +36,13 @@
 	var/list/slime_traits = list()
 	///used to help our name changes so we don't rename named slimes
 	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
+	///our number
+	var/number = 0
+
+	///list of all possible mutations
+	var/list/possible_color_mutations = list()
+
+	var/list/compiled_liked_foods = list()
 
 /mob/living/basic/slime/Initialize(mapload)
 	. = ..()
@@ -45,15 +52,52 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 	if(!current_color)
-		current_color = new /datum/slime_color/green
+		current_color = new /datum/slime_color/grey
 
 	AddComponent(/datum/component/liquid_secretion, current_color.secretion_path, 10, 10 SECONDS, TYPE_PROC_REF(/mob/living/basic/slime, check_secretion))
 	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
 	AddComponent(/datum/component/scared_of_item, 5)
 
 	RegisterSignal(src, COMSIG_HUNGER_UPDATED, PROC_REF(hunger_updated))
+	for(var/datum/slime_mutation_data/listed as anything in current_color.possible_mutations)
+		var/datum/slime_mutation_data/data = new listed
+		data.on_add_to_slime(src)
+		possible_color_mutations += data
+		if(length(data.needed_items))
+			compiled_liked_foods |= data.needed_items
 
 	update_slime_varience()
+	if(length(compiled_liked_foods))
+		recompile_ai_tree()
+
+
+/mob/living/basic/slime/Destroy()
+	. = ..()
+	for(var/datum/slime_trait/trait as anything in slime_traits)
+		remove_trait(trait)
+	UnregisterSignal(src, COMSIG_HUNGER_UPDATED)
+	QDEL_NULL(current_color)
+
+/mob/living/basic/slime/proc/recompile_ai_tree()
+	var/list/new_planning_subtree = list()
+
+	RemoveElement(/datum/element/basic_eating)
+
+	if(!HAS_TRAIT(src, TRAIT_SLIME_RABID))
+		new_planning_subtree |= /datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item
+		new_planning_subtree |= /datum/ai_planning_subtree/flee_target
+
+	if(!(slime_flags & PASSIVE_SLIME))
+		new_planning_subtree |= /datum/ai_planning_subtree/simple_find_target/slime
+
+	if(length(compiled_liked_foods))
+		AddElement(/datum/element/basic_eating, food_types = compiled_liked_foods)
+		new_planning_subtree |= /datum/ai_planning_subtree/find_food
+		ai_controller.set_blackboard_key(BB_BASIC_FOODS, compiled_liked_foods)
+
+	new_planning_subtree |= /datum/ai_planning_subtree/basic_melee_attack_subtree/slime
+
+	ai_controller.replace_planning_subtrees(new_planning_subtree)
 
 /mob/living/basic/slime/proc/update_slime_varience()
 	if(slime_flags & ADULT_SLIME)
@@ -65,10 +109,11 @@
 			icon_state = "grey baby slime"
 	color = current_color.slime_color
 
+	update_name()
 	SEND_SIGNAL(src, COMSIG_SECRETION_UPDATE, current_color.secretion_path, 10, 10 SECONDS)
 
 /mob/living/basic/slime/proc/check_secretion()
-	if(!(slime_flags & ADULT_SLIME))
+	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME))
 		return FALSE
 
 	if(hunger_precent < production_precent)

@@ -47,6 +47,8 @@
 	if(current_hunger + feed_amount > max_hunger)
 		var/temp = current_hunger + feed_amount + max_hunger
 		SEND_SIGNAL(parent, COMSIG_MOB_OVERATE, temp)
+		ADD_TRAIT(parent, TRAIT_OVERFED, "hunger_trait")
+		addtimer(CALLBACK(src, PROC_REF(remove_hunger_trait), TRAIT_OVERFED), 5 MINUTES, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		current_hunger += feed_amount
 		if(feed_pause_time)
 			feed_pause_end = world.time + feed_pause_time
@@ -77,3 +79,6 @@
 		current_hunger = 0
 		SEND_SIGNAL(parent, COMSIG_HUNGER_UPDATED, current_hunger, max_hunger)
 		SEND_SIGNAL(parent, COMSIG_MOB_FULLY_STARVING)
+
+/datum/component/generic_mob_hunger/proc/remove_hunger_trait(trait)
+	REMOVE_TRAIT(parent, trait, "hunger_trait")

@@ -18,3 +18,8 @@
 	name = "Green Slime Ooze"
 	color = "#D6F264"
 	extract_path = /obj/item/slime_extract/green
+
+/datum/reagent/slime_ooze/metal
+	name = "Metal Slime Ooze"
+	color = "#6D758D"
+	extract_path = /obj/item/slime_extract/metal

@@ -3,6 +3,7 @@
 	icon_prefix = "grey"
 	secretion_path = /datum/reagent/slime_ooze/grey
 	slime_color = "#FFFFFF" // I know this is white its because the base colors are greyed
+	possible_mutations = list(/datum/slime_mutation_data/metal)
 
 /datum/slime_color/blue
 	name = "blue"
@@ -21,3 +22,9 @@
 	icon_prefix = "green"
 	secretion_path = /datum/reagent/slime_ooze/green
 	slime_color = "#D6F264"
+
+/datum/slime_color/metal
+	name = "metal"
+	icon_prefix = "metal"
+	secretion_path = /datum/reagent/slime_ooze/metal
+	slime_color = "#6D758D"

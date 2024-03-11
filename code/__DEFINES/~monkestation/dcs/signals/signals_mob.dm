@@ -10,3 +10,4 @@
 #define COMSIG_SECRETION_UPDATE "secretion_update"
 #define COMSIG_FEEDING_CHECK "latch_check"
 #define COMSIG_HUNGER_UPDATED "update_hunger_mob"
+#define COMSIG_LIVING_ATE "living_ate_object"

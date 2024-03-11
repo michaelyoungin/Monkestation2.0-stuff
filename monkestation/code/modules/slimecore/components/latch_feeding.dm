@@ -45,6 +45,14 @@
 
 /datum/component/latch_feeding/proc/latch_target(init = FALSE)
 	var/mob/basic_mob = parent
+	var/mob/living/living_target = target
+	if((living_target.stat >= SOFT_CRIT) && stops_at_crit)
+		if(init)
+			return FALSE
+		else
+			qdel(src)
+			return FALSE
+
 	target.unbuckle_all_mobs(force = TRUE)
 	if(target.buckle_mob(basic_mob, force=TRUE))
 		basic_mob.layer = target.layer + 0.1
