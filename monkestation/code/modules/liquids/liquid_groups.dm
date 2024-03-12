@@ -367,6 +367,30 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	handle_visual_changes()
 
+/datum/liquid_group/proc/transfer_specific_reagents(datum/reagents/secondary_reagent, amount, list/reagents_to_check, obj/effect/abstract/liquid_turf/remover, merge = FALSE)
+	if(!length(reagents_to_check))
+		return
+	var/total_hits = 0
+	var/total_volume = 0
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
+		if(!(reagent_type.type in reagents_to_check))
+			continue
+		total_hits++
+		total_volume += reagent_type.volume
+	if(!total_hits)
+		return
+
+	var/precent = (amount / total_volume)
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
+		if(!(reagent_type.type in reagents_to_check))
+			continue
+		secondary_reagent.add_reagent(reagent_type.type, reagent_type.volume * precent, no_react = TRUE)
+		remove_specific(amount = reagent_type.volume * precent, reagent_type = reagent_type.type)
+
+	process_removal()
+	handle_visual_changes()
+
+
 /datum/liquid_group/proc/process_removal(amount)
 
 	total_reagent_volume = reagents.total_volume

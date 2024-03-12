@@ -102,3 +102,42 @@
 
 		SSresearch.slime_core_prices[core_type] = (1 + price_mod * price_limiter) * SSresearch.slime_core_prices[core_type]
 	qdel(extract)
+
+/obj/machinery/slime_market_pad/attackby_secondary(obj/item/weapon, mob/user, params)
+	if(!console)
+		to_chat(user, span_warning("[src] does not have a console linked to it!"))
+		return
+
+	if(!console.request_pad)
+		to_chat(user, span_warning("[console] does not have a request_pad linked to it!"))
+		return
+
+	if(!length(console.request_pad.current_requests))
+		to_chat(user, span_warning("There are no current extract requests!"))
+		return
+
+	if(istype(weapon, /obj/item/slime_extract))
+		var/list/radial_choices = list()
+		var/list/choice_to_request = list()
+		var/obj/item/slime_extract/extract = weapon
+		for(var/datum/extract_request_data/current as anything in console.request_pad.current_requests)
+			if((current.extract_path != extract.type) || current.ready_for_pickup)
+				continue
+			radial_choices |= current.radial_data
+			choice_to_request |= list(current.request_name = current)
+
+		if(!length(radial_choices))
+			say("There are no current extract requests that need this extract!")
+			return
+
+		var/choice = show_radial_menu(user, src, radial_choices, require_near = TRUE, tooltips = TRUE)
+		if(!choice_to_request[choice])
+			return
+
+		var/datum/extract_request_data/chosen = choice_to_request[choice]
+		chosen.add_extract()
+
+		flick("[base_icon_state]_vend", src)
+		qdel(extract)
+
+		return

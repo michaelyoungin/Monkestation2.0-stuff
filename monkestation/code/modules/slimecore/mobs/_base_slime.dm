@@ -1,7 +1,7 @@
 /mob/living/basic/slime
 	name = "grey baby slime (123)"
 	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
-	icon_state = "baby_grey"
+	icon_state = "baby grey slime"
 
 	ai_controller = /datum/ai_controller/basic_controller/slime
 
