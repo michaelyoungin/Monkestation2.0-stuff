@@ -21,15 +21,26 @@
 	var/datum/compressor_recipe/current_recipe
 
 	var/static/list/recipe_choices = list()
+	var/static/list/cross_breed_choices = list()
 	var/static/list/choice_to_datum = list()
 
 /obj/machinery/plumbing/ooze_compressor/Initialize(mapload, bolt, layer)
 	. = ..()
 	if(!length(recipe_choices))
-		for(var/datum/compressor_recipe/listed as anything in subtypesof(/datum/compressor_recipe))
+		for(var/datum/compressor_recipe/listed as anything in (subtypesof(/datum/compressor_recipe) - typesof(/datum/compressor_recipe/crossbreed)))
 			var/datum/compressor_recipe/stored_recipe = new listed
 			recipe_choices |= list("[initial(stored_recipe.output_item.name)]" = image(icon = initial(stored_recipe.output_item.icon), icon_state = initial(stored_recipe.output_item.icon_state)))
 			choice_to_datum |= list("[initial(stored_recipe.output_item.name)]" = stored_recipe)
+
+	if(!length(cross_breed_choices))
+		for(var/datum/compressor_recipe/listed as anything in (subtypesof(/datum/compressor_recipe/crossbreed)))
+			var/datum/compressor_recipe/stored_recipe = new listed
+			var/obj/item/slimecross/crossbreed = stored_recipe.output_item
+			var/image/new_image = image(icon = initial(stored_recipe.output_item.icon), icon_state = initial(stored_recipe.output_item.icon_state))
+			new_image.color = return_color_from_string(initial(crossbreed.colour))
+
+			cross_breed_choices |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = new_image)
+			choice_to_datum |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = stored_recipe)
 
 	AddComponent(/datum/component/plumbing/ooze_compressor, bolt, layer)
 
@@ -77,6 +88,8 @@
 /obj/machinery/plumbing/ooze_compressor/proc/finish_compressing()
 	for(var/i in 1 to current_recipe.created_amount)
 		new current_recipe.output_item(loc)
+	compressing = FALSE
+	update_appearance()
 	reagents.clear_reagents()
 	if(!repeat_recipe)
 		current_recipe = null
@@ -86,13 +99,22 @@
 	if(change_recipe(user))
 		reagents.clear_reagents()
 
-/obj/machinery/plumbing/ooze_compressor/attack_hand_secondary(mob/user, list/modifiers)
+/obj/machinery/plumbing/ooze_compressor/attack_hand_secondary(mob/living/user, list/modifiers)
+	. = ..()
+	if(change_recipe(user, TRUE))
+		reagents.clear_reagents()
+
+/obj/machinery/plumbing/ooze_compressor/AltClick(mob/user)
 	. = ..()
 	visible_message(span_notice("[user] presses a button turning the repeat recipe system [repeat_recipe ? "Off" : "On"]"))
 	repeat_recipe = !repeat_recipe
 
-/obj/machinery/plumbing/ooze_compressor/proc/change_recipe(mob/user)
-	var/choice = show_radial_menu(user, src, recipe_choices, require_near = TRUE, tooltips = TRUE)
+/obj/machinery/plumbing/ooze_compressor/proc/change_recipe(mob/user, cross_breed = FALSE)
+	var/choice
+	if(cross_breed)
+		choice = show_radial_menu(user, src, cross_breed_choices, require_near = TRUE, tooltips = TRUE)
+	else
+		choice = show_radial_menu(user, src, recipe_choices, require_near = TRUE, tooltips = TRUE)
 	if(!(choice in choice_to_datum))
 		return
 

@@ -14,7 +14,7 @@
 /datum/slime_color/dark_blue
 	name = "dark blue"
 	icon_prefix = "dark blue"
-	secretion_path = /datum/reagent/slime_ooze/dark_blue
+	secretion_path = /datum/reagent/slime_ooze/darkblue
 	slime_color = "#3375F9"
 
 /datum/slime_color/green

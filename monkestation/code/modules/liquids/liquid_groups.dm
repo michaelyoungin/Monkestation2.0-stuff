@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	for(var/t in members)
 		var/turf/T = t
 		T.liquids.liquid_group = null
-	members = null
+	members = list()
 	burning_members = null
 	return ..()
 
@@ -394,7 +394,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/process_removal(amount)
 
 	total_reagent_volume = reagents.total_volume
-	if(total_reagent_volume)
+	if(total_reagent_volume && length(members)) //Otherwise we are probably just sending the last of things
 		reagents_per_turf = total_reagent_volume / length(members)
 	else
 		reagents_per_turf = 0
@@ -764,7 +764,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 					var/list/temp = return_connected_liquids(cardinal.liquids)
 					if(isnull(temp) || !length(temp))
 						continue
-					connected_array += list(temp)
+					connected_array += list(list(temp))
 
 	if(!length(connected_array))
 		return
@@ -796,6 +796,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		for(var/list/liquid_list as anything in connected_liquids)
 			var/datum/liquid_group/new_group = new(1)
+			if(!members)
+				members = list()
+			trans_to_seperate_group(new_group.reagents, amount_to_transfer)
 			for(var/turf/connected_liquid in liquid_list)
 
 				new_group.check_edges(connected_liquid)
@@ -805,7 +808,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				remove_from_group(connected_liquid, TRUE)
 				new_group.add_to_group(connected_liquid)
 
-			trans_to_seperate_group(new_group.reagents, amount_to_transfer)
 			new_group.total_reagent_volume = new_group.reagents.total_volume
 			new_group.reagents_per_turf = new_group.total_reagent_volume / length(new_group.members)
 

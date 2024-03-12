@@ -12073,6 +12073,7 @@
 "exu" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/item/radio/intercom/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "exC" = (
@@ -12790,7 +12791,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen2"
+	mapping_id = "pen2";
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -12999,6 +13001,9 @@
 	name = "Xenobio Pen 7 Blast Doors";
 	pixel_y = 4;
 	req_access = list("xenobiology")
+	},
+/obj/machinery/slime_pen_controller{
+	mapping_id = "pen9"
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -16441,7 +16446,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen3"
+	mapping_id = "pen3";
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -21263,7 +21269,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen1"
+	mapping_id = "pen1";
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -22298,7 +22305,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen5"
+	mapping_id = "pen5";
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -23533,6 +23541,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain/private)
+"iGf" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/slime_pen_controller{
+	mapping_id = "pen6"
+	},
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "iGj" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -24693,10 +24709,6 @@
 /obj/effect/landmark/start/hangover/closet,
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness/recreation)
-"iWc" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "iWj" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -42298,6 +42310,7 @@
 "pfP" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light_switch/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "pfR" = (
@@ -42400,7 +42413,8 @@
 	pixel_y = -1
 	},
 /obj/machinery/slime_pen_controller{
-	mapping_id = "pen1"
+	mapping_id = "pen1";
+	dir = 2
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -43027,7 +43041,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen7"
+	mapping_id = "pen7";
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -43549,6 +43564,7 @@
 	id = "xenobio7";
 	name = "Xenobio Pen 7 Blast Door"
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "pDs" = (
@@ -46008,7 +46024,8 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "pen4"
+	mapping_id = "pen4";
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -51168,6 +51185,7 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "siz" = (
@@ -54606,7 +54624,7 @@
 	req_access = list("xenobiology")
 	},
 /obj/machinery/slime_pen_controller{
-	mapping_id = s
+	mapping_id = "pen6"
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -59200,6 +59218,10 @@
 /obj/machinery/door/window/left/directional/north{
 	name = "Containment Pen #7";
 	req_access = list("xenobiology")
+	},
+/obj/machinery/plumbing/ooze_sucker{
+	mapping_id = "pen9";
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -113452,7 +113474,7 @@ cXP
 cXP
 xVu
 jbk
-iWc
+mJQ
 pVR
 hCw
 mCj
@@ -113709,7 +113731,7 @@ gXw
 pZi
 cXP
 lVB
-iWc
+mJQ
 pDl
 uYP
 ljF
@@ -113966,7 +113988,7 @@ gXw
 vvD
 cXP
 lVB
-iWc
+mJQ
 eSC
 hCw
 mtu
@@ -114986,7 +115008,7 @@ oyj
 xiL
 jgq
 imw
-aft
+iGf
 ygF
 rrL
 fMF
