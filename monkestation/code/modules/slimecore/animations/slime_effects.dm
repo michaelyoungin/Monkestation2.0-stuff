@@ -1,45 +1,30 @@
 /obj/effect/abstract/blank
 	name = ""
+	alpha = 150
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon ='monkestation/code/modules/slimecore/icons/filters.dmi'
-	icon_state = "blank"
-
-GLOBAL_DATUM(rainbow_effect, /obj/effect/abstract/blank)
+	icon_state = "diag"
+	vis_flags = VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
+	blend_mode = BLEND_INSET_OVERLAY
 
 /atom/movable/proc/rainbow_effect() // this just animates between the primary colors of a rainbow
-	if(!GLOB.rainbow_effect)
-		GLOB.rainbow_effect = new
-		GLOB.rainbow_effect.add_filter("rainbow", 10, alpha_mask_filter(render_source = "rainbow"))
+	var/obj/effect/abstract/blank/rainbow_effect = new
 
-		animate(GLOB.rainbow_effect, color = "#FF0000", time = rand(0.3 SECONDS, 1.2 SECONDS), loop = -1, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
-		animate(color = "#FFFF00", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#00FF00", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#00FFFF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#0000FF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#FF00FF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-
-	vis_contents += GLOB.rainbow_effect
-	render_target = "rainbow"
+	appearance_flags &= ~KEEP_APART
+	appearance_flags |= KEEP_TOGETHER
+	vis_contents += rainbow_effect
 
 /atom/movable/proc/remove_rainbow_effect()
-	vis_contents -= GLOB.rainbow_effect
-	render_target = null
+	var/obj/effect/abstract/blank/rainbow_effect = locate() in vis_contents
+	qdel(rainbow_effect)
 
 /image/proc/rainbow_effect() // this just animates between the primary colors of a rainbow
-	if(!GLOB.rainbow_effect)
-		GLOB.rainbow_effect = new
-		GLOB.rainbow_effect.add_filter("rainbow", 10, alpha_mask_filter(render_source = "rainbow"))
+	var/obj/effect/abstract/blank/rainbow_effect = new
 
-		animate(GLOB.rainbow_effect, color = "#FF0000", time = rand(0.3 SECONDS, 1.2 SECONDS), loop = -1, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
-		animate(color = "#FFFF00", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#00FF00", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#00FFFF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#0000FF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-		animate(color = "#FF00FF", time = rand(0.3 SECONDS, 1.2 SECONDS), easing = LINEAR_EASING)
-
-	vis_contents += GLOB.rainbow_effect
-	render_target = "rainbow"
+	appearance_flags &= ~KEEP_APART
+	appearance_flags |= KEEP_TOGETHER
+	vis_contents += rainbow_effect
 
 /atom/proc/ungulate()
 	var/matrix/ungulate_matrix = matrix(transform)

@@ -27,7 +27,7 @@
 	var/slime_flags = NONE
 
 	///our current datum for slime color
-	var/datum/slime_color/current_color
+	var/datum/slime_color/current_color = /datum/slime_color/grey
 	///this is our last cached hunger precentage between 0 and 1
 	var/hunger_precent = 0
 	///how much hunger we need to produce
