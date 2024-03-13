@@ -10,6 +10,9 @@
 		/datum/slime_mutation_data/blue,
 		)
 
+/datum/slime_color/grey/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/cockroach/iceroach = 1)
+
 /datum/slime_color/blue
 	name = "blue"
 	icon_prefix = "blue"
@@ -20,6 +23,11 @@
 		/datum/slime_mutation_data/dark_blue,
 		/datum/slime_mutation_data/pink,
 		)
+
+/datum/slime_color/grey/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/meatbeast = 2)
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/diyaab = 1)
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/thinbug = 1)
 
 /datum/slime_color/dark_blue
 	name = "dark blue"
@@ -150,7 +158,10 @@
 	name = "rainbow"
 	icon_prefix = "rainbow"
 	secretion_path = /datum/reagent/slime_ooze/rainbow
-	slime_color = COLOR_GRAY
+	slime_color = "#FFFFFF"
+
+/datum/slime_color/rainbow/on_add_to_slime(mob/living/basic/slime/slime)
+	slime.rainbow_effect()
 
 /datum/slime_color/oil
 	name = "oil"

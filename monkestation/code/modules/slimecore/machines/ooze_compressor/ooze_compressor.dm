@@ -38,7 +38,8 @@
 			var/obj/item/slimecross/crossbreed = stored_recipe.output_item
 			var/image/new_image = image(icon = initial(stored_recipe.output_item.icon), icon_state = initial(stored_recipe.output_item.icon_state))
 			new_image.color = return_color_from_string(initial(crossbreed.colour))
-
+			if(initial(crossbreed.colour) == "rainbow")
+				new_image.rainbow_effect()
 			cross_breed_choices |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = new_image)
 			choice_to_datum |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = stored_recipe)
 
@@ -59,6 +60,38 @@
 
 /obj/machinery/plumbing/ooze_compressor/update_overlays()
 	. = ..()
+	if(length(reagents.reagent_list) >= 1 && length(reagents_for_recipe) >= 1)
+		var/needed_reagents = reagents_for_recipe[1]
+		var/datum/reagent/first_reagent = reagents.reagent_list[1]
+		var/filled_precent = first_reagent.volume / reagents_for_recipe[needed_reagents]
+
+		var/state = "quarter"
+		switch(filled_precent)
+			if(0.5 to 0.99)
+				state = "half"
+			if(1 to INFINITY)
+				state = "full"
+
+		var/mutable_appearance/right_side = mutable_appearance(icon, "cross_compressor_right_[state]", layer, src)
+		right_side.color = first_reagent.color
+		. += right_side
+
+	if(length(reagents.reagent_list) >= 2 && length(reagents_for_recipe) >= 2)
+		var/needed_reagents = reagents_for_recipe[2]
+		var/datum/reagent/first_reagent = reagents.reagent_list[2]
+		var/filled_precent = first_reagent.volume / needed_reagents[needed_reagents]
+
+		var/state = "quarter"
+		switch(filled_precent)
+			if(0.5 to 0.99)
+				state = "half"
+			if(1 to INFINITY)
+				state = "full"
+
+		var/mutable_appearance/left_side = mutable_appearance(icon, "cross_compressor_left_[state]", layer, src)
+		left_side.color = first_reagent.color
+		. += left_side
+
 	. += mutable_appearance(icon, "cross_compressor_tank", layer + 0.01, src)
 
 /// Handles properly detaching signal hooks.
@@ -70,6 +103,7 @@
 /// Handles stopping the emptying process when the chamber empties.
 /obj/machinery/plumbing/ooze_compressor/proc/on_reagent_change(datum/reagents/holder, ...)
 	SIGNAL_HANDLER
+	update_appearance()
 	if(holder.total_volume == 0 && !compressing) //we were emptying, but now we aren't
 		holder.flags |= NO_REACT
 	return NONE

@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(biomass_unlocks, list())
+
 /obj/machinery/biomass_recycler
 	name = "biomass recycler"
 	desc = "A machine used for recycling dead biomass and fabricating dehydrated creatures and eggs."
@@ -104,6 +106,12 @@
 	var/list/items = list()
 	var/list/item_names = list()
 	for(var/printable_type in printable_types)
+		var/atom/movable/printable = printable_type
+		var/image/printable_image = image(icon = initial(printable.icon), icon_state = initial(printable.icon_state))
+		items += list(initial(printable.name) = printable_image)
+		item_names[initial(printable.name)] = printable_type
+
+	for(var/printable_type in GLOB.biomass_unlocks)
 		var/atom/movable/printable = printable_type
 		var/image/printable_image = image(icon = initial(printable.icon), icon_state = initial(printable.icon_state))
 		items += list(initial(printable.name) = printable_image)

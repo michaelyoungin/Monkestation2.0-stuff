@@ -66,7 +66,7 @@
 	return current_hunger / max_hunger
 
 /datum/component/generic_mob_hunger/process(seconds_per_tick)
-	if(hunger_paused || !hunger_drain || (feed_pause_end < world.time))
+	if(hunger_paused || !hunger_drain || (feed_pause_end > world.time))
 		return
 
 	if(current_hunger >= hunger_drain)

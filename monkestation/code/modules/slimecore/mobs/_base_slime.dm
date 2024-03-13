@@ -48,6 +48,8 @@
 	///this is our mutation chance
 	var/mutation_chance = 30
 
+	var/obj/item/slime_accessory/worn_accessory
+
 /mob/living/basic/slime/Initialize(mapload, datum/slime_color/passed_color)
 	. = ..()
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SLIME, 0.5, -11)
@@ -56,9 +58,10 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 	if(!passed_color)
-		current_color = new /datum/slime_color/grey
+		current_color = new current_color
 	else
 		current_color = new passed_color
+	current_color.on_add_to_slime(src)
 
 	AddComponent(/datum/component/liquid_secretion, current_color.secretion_path, 10, 10 SECONDS, TYPE_PROC_REF(/mob/living/basic/slime, check_secretion))
 	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
@@ -111,14 +114,19 @@
 	if(slime_flags & ADULT_SLIME)
 		icon_state = "grey adult slime"
 	else
-		if(HAS_TRAIT(src, TRAIT_FEEDING))
-			icon_state = "grey baby slime eat"
-		else
-			icon_state = "grey baby slime"
+		icon_state = "grey baby slime"
 	color = current_color.slime_color
 
 	update_name()
 	SEND_SIGNAL(src, COMSIG_SECRETION_UPDATE, current_color.secretion_path, 10, 10 SECONDS)
+
+/mob/living/basic/slime/update_overlays()
+	. = ..()
+	if(worn_accessory)
+		if(slime_flags & ADULT_SLIME)
+			.+= mutable_appearance(worn_accessory.accessory_icon, "[worn_accessory.accessory_icon_state]-adult", layer + 0.15, src, appearance_flags = (KEEP_APART | RESET_COLOR))
+		else
+			.+= mutable_appearance(worn_accessory.accessory_icon, "[worn_accessory.accessory_icon_state]-baby", layer + 0.15, src, appearance_flags = (KEEP_APART | RESET_COLOR))
 
 /mob/living/basic/slime/proc/check_secretion()
 	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME) || (slime_flags & MUTATING_SLIME))
@@ -135,6 +143,7 @@
 	else
 		slime_flags &= ~ADULT_SLIME
 	update_slime_varience()
+	update_appearance()
 
 /mob/living/basic/slime/proc/add_trait(datum/slime_trait/added_trait)
 	var/datum/slime_trait/new_trait = new added_trait
@@ -177,15 +186,7 @@
 	visible_message(span_notice("[name] starts to ungulate, it looks to be mutating."))
 	slime_flags |= MUTATING_SLIME
 
-	var/matrix/ungulate_matrix = matrix(transform)
-	ungulate_matrix.Scale(1, 0.9)
-	var/matrix/base_matrix = matrix(transform)
-	var/base_pixel_y = pixel_y
-
-	animate(src, transform = ungulate_matrix, time = 0.1 SECONDS, easing = EASE_OUT, loop = -1)
-	animate(pixel_y = -1, time = 0.1 SECONDS, easing = EASE_OUT)
-	animate(transform = base_matrix, time = 0.1 SECONDS, easing = EASE_IN)
-	animate(pixel_y = base_pixel_y, time = 0.1 SECONDS, easing = EASE_IN)
+	ungulate()
 
 
 	addtimer(CALLBACK(src, PROC_REF(finish_mutating)), 30 SECONDS)
@@ -194,6 +195,7 @@
 /mob/living/basic/slime/proc/change_color(datum/slime_color/new_color)
 	QDEL_NULL(current_color)
 	current_color = new_color
+	current_color.on_add_to_slime(src)
 
 	update_slime_varience()
 
@@ -240,3 +242,24 @@
 			start_split()
 	else
 		start_split()
+
+/mob/living/basic/slime/attackby(obj/item/attacking_item, mob/living/user, params)
+	. = ..()
+	if(!istype(attacking_item, /obj/item/slime_accessory))
+		return
+	worn_accessory = attacking_item
+	attacking_item.forceMove(src)
+	update_appearance()
+
+/mob/living/basic/slime/attack_hand(mob/living/carbon/human/user, list/modifiers)
+	. = ..()
+	if(worn_accessory)
+		visible_message("[user] takes the [worn_accessory] off the [src].")
+		worn_accessory = null
+		worn_accessory.forceMove(get_turf(user))
+		update_appearance()
+
+
+
+/mob/living/basic/slime/rainbow
+	current_color = /datum/slime_color/rainbow

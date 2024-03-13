@@ -46,7 +46,7 @@
 /datum/component/latch_feeding/proc/latch_target(init = FALSE)
 	var/mob/basic_mob = parent
 	var/mob/living/living_target = target
-	if((living_target.stat >= SOFT_CRIT) && stops_at_crit)
+	if((living_target.stat >= SOFT_CRIT) && stops_at_crit && living_target.client)
 		if(init)
 			return FALSE
 		else
@@ -99,7 +99,7 @@
 		return
 
 	var/mob/living/living_target = target
-	if((living_target.stat >= SOFT_CRIT) && stops_at_crit)
+	if((living_target.stat >= SOFT_CRIT) && stops_at_crit && living_target.client)
 		stop_feeding()
 		return
 

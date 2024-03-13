@@ -225,6 +225,12 @@
 		items += list(initial(printable.name) = printable_image)
 		item_names[initial(printable.name)] = printable_type
 
+	for(var/printable_type in GLOB.biomass_unlocks)
+		var/atom/movable/printable = printable_type
+		var/image/printable_image = image(icon = initial(printable.icon), icon_state = initial(printable.icon_state))
+		items += list(initial(printable.name) = printable_image)
+		item_names[initial(printable.name)] = printable_type
+
 	var/pick = show_radial_menu(user, src, items, custom_check = FALSE, require_near = TRUE, tooltips = TRUE)
 
 	if(!pick)
@@ -374,7 +380,7 @@
 
 	if(isturf(user.loc))
 		spewed.throw_at(target, min(get_dist(user, target), (pack.illegal ? 5 : 11)), 1, user)
-		if(prob(10))
+		if(prob(99))
 			playsound(spewed, 'sound/misc/woohoo.ogg', 50, TRUE)
 
 	if(istype(spewed, /mob/living/basic/slime))
@@ -438,6 +444,7 @@
 	var/mob/living/basic/slime/slime = target
 	slime.slime_flags |= STORED_SLIME
 	slime.ai_controller.set_ai_status(AI_STATUS_OFF)
+	slime.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, null)
 
 /obj/item/vacuum_nozzle/proc/start_busting(mob/living/basic/revenant/revenant, mob/living/user)
 	revenant.visible_message(span_warning("[user] starts sucking [revenant] into their [src]!"), span_userdanger("You are being sucked into [user]'s [src]!"))
