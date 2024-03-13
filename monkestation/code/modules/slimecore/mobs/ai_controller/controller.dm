@@ -13,6 +13,6 @@
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item,
 		/datum/ai_planning_subtree/flee_target,
 		//now we try to
-		/datum/ai_planning_subtree/simple_find_target/slime,
+		/datum/ai_planning_subtree/simple_find_target_no_trait/slime,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/slime,
 	)

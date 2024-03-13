@@ -6667,6 +6667,7 @@
 #include "monkestation\code\modules\skyrat_snipes\vending_machines\vending_snacks.dm"
 #include "monkestation\code\modules\skyrat_snipes\vending_machines\vendors.dm"
 #include "monkestation\code\modules\slash_commands\world_topics.dm"
+#include "monkestation\code\modules\slimecore\mobs\ai_controller\behaviours\find_target_without_trait.dm"
 #include "monkestation\code\modules\slimecore\slime_accessories.dm\_base_accessory.dm"
 #include "monkestation\code\modules\slimecore\animations\slime_effects.dm"
 #include "monkestation\code\modules\slimecore\assets\xenobiology.dm"

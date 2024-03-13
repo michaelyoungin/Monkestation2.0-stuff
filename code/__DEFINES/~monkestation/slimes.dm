@@ -9,6 +9,7 @@
 
 #define TRAIT_FEEDING "feeding_trait"
 #define LATCH_TRAIT "latch_trait"
+#define TRAIT_LATCH_FEEDERED "feeder_targetted"
 
 #define BB_BASIC_MOB_SCARED_ITEM "BB_basic_mob_scared_item"
 

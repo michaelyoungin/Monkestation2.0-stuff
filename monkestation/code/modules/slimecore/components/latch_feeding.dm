@@ -58,6 +58,7 @@
 		basic_mob.layer = target.layer + 0.1
 		target.visible_message(span_danger("[basic_mob] latches onto [target]!"), \
 						span_userdanger("[basic_mob] latches onto [target]!"))
+		ADD_TRAIT(target, TRAIT_LATCH_FEEDERED, "latch_feeding")
 		return TRUE
 	else
 		to_chat(basic_mob, span_notice("You failed to latch onto [target]."))
@@ -80,7 +81,7 @@
 
 	basic_mob.layer = initial(basic_mob.layer)
 	basic_mob.buckled.unbuckle_mob(basic_mob, force=TRUE)
-
+	REMOVE_TRAIT(target, TRAIT_LATCH_FEEDERED, "latch_feeding")
 
 /datum/component/latch_feeding/proc/check_buckled(mob/living/source, atom/movable/new_buckled)
 	if(!new_buckled && !unlatching)
