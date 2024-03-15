@@ -18,6 +18,9 @@
 		RegisterSignal(host, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(apply_overlays))
 		host.update_overlays()
 
+/datum/slime_trait/proc/on_remove(mob/living/basic/slime/parent)
+	return
+
 /datum/slime_trait/proc/on_death()
 	return
 

@@ -64,6 +64,7 @@
 
 /datum/component/mob_stacker/proc/can_add(datum/source)
 	SIGNAL_HANDLER
+	//this isn't a 1 line return because I like to debug
 	var/value = length(stacked_mobs)
 	if(value < max_size)
 		return TRUE

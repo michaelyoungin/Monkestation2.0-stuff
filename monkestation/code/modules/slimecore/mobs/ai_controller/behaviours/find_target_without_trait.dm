@@ -6,6 +6,8 @@
 	var/aggro_range_key = BB_AGGRO_RANGE
 	/// Static typecache list of potentially dangerous objs
 	var/static/list/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
+	///our max size
+	var/checks_size = FALSE
 
 /datum/ai_behavior/find_potential_targets_without_trait/perform(seconds_per_tick, datum/ai_controller/controller, target_key, targeting_strategy_key, hiding_location_key, trait)
 	. = ..()
@@ -35,9 +37,13 @@
 
 	var/list/filtered_targets = list()
 
-	for(var/atom/pot_target in potential_targets)
+	for(var/mob/living/pot_target in potential_targets)
 		if(HAS_TRAIT(pot_target, trait))
 			continue
+
+		if(checks_size && pot_target.mob_size >= living_mob.mob_size)///hello shitcode department?
+			continue
+
 		if(targeting_strategy.can_attack(living_mob, pot_target))//Can we attack it?
 			filtered_targets += pot_target
 			continue
@@ -64,3 +70,7 @@
 /// Returns the desired final target from the filtered list of targets
 /datum/ai_behavior/find_potential_targets_without_trait/proc/pick_final_target(datum/ai_controller/controller, list/filtered_targets)
 	return pick(filtered_targets)
+
+
+/datum/ai_behavior/find_potential_targets_without_trait/smaller
+	checks_size = TRUE

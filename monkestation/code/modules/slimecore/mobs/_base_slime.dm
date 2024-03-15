@@ -50,6 +50,9 @@
 
 	var/obj/item/slime_accessory/worn_accessory
 
+	///this is a list of trees that we replace goes from base = replaced
+	var/list/replacement_trees = list()
+
 /mob/living/basic/slime/Initialize(mapload, datum/slime_color/passed_color)
 	. = ..()
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SLIME, 0.5, -11)
@@ -95,20 +98,25 @@
 	RemoveElement(/datum/element/basic_eating)
 
 	if(!HAS_TRAIT(src, TRAIT_SLIME_RABID))
-		new_planning_subtree |= /datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item
-		new_planning_subtree |= /datum/ai_planning_subtree/flee_target
+		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item)
+		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/flee_target)
 
 	if(!(slime_flags & PASSIVE_SLIME))
-		new_planning_subtree |= /datum/ai_planning_subtree/simple_find_target_no_trait/slime
+		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/simple_find_target_no_trait/slime)
 
 	if(length(compiled_liked_foods))
 		AddElement(/datum/element/basic_eating, food_types = compiled_liked_foods)
-		new_planning_subtree |= /datum/ai_planning_subtree/find_food
+		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/find_food)
 		ai_controller.set_blackboard_key(BB_BASIC_FOODS, compiled_liked_foods)
 
-	new_planning_subtree |= /datum/ai_planning_subtree/basic_melee_attack_subtree/slime
+	new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/basic_melee_attack_subtree/slime)
 
 	ai_controller.replace_planning_subtrees(new_planning_subtree)
+
+/mob/living/basic/slime/proc/add_or_replace_tree(/datum/ai_planning_subtree/checker)
+	if(checker in replacement_trees)
+		return replacement_trees[checker]
+	return checker
 
 /mob/living/basic/slime/proc/update_slime_varience()
 	if(slime_flags & ADULT_SLIME)
