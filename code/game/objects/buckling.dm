@@ -239,16 +239,16 @@
 		return FALSE
 
 	// Make sure the target isn't already buckled to something.
-	if(target.buckled)
-		return FALSE
+	//if(target.buckled)
+		//return FALSE
 
 	// Make sure this atom can still have more things buckled to it.
 	if(LAZYLEN(buckled_mobs) >= max_buckled_mobs)
 		return FALSE
 
 	// Stacking buckling leads to lots of jank and issues, better to just nix it entirely
-	if(target.has_buckled_mobs())
-		return FALSE
+	//if(target.has_buckled_mobs())
+		//return FALSE
 
 	// If the buckle requires restraints, make sure the target is actually restrained.
 	if(buckle_requires_restraints && !HAS_TRAIT(target, TRAIT_RESTRAINED))

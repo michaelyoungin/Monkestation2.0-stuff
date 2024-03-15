@@ -37,7 +37,7 @@
 	///used to help our name changes so we don't rename named slimes
 	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
 	///our number
-	var/number = 0
+	var/number
 
 	///list of all possible mutations
 	var/list/possible_color_mutations = list()
@@ -156,7 +156,8 @@
 
 /mob/living/basic/slime/update_name()
 	if(slime_name_regex.Find(name))
-		number = rand(1, 1000)
+		if(!number)
+			number = rand(1, 1000)
 		name = "[current_color.name] [(slime_flags & ADULT_SLIME) ? "adult" : "baby"] slime ([number])"
 		real_name = name
 	return ..()

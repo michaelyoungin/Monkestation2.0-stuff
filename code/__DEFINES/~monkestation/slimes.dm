@@ -7,6 +7,7 @@
 #define TRAIT_ON_DEATH (1<<0)
 #define TRAIT_VISUAL (1<<1)
 
+#define TRAIT_IN_STACK "inside_mob_stack"
 #define TRAIT_FEEDING "feeding_trait"
 #define LATCH_TRAIT "latch_trait"
 #define TRAIT_LATCH_FEEDERED "feeder_targetted"
@@ -38,3 +39,12 @@
 #define SLIME_SELL_MINIMUM_MODIFIER   0.25
 #define SLIME_RANDOM_MODIFIER_MIN -0.0003
 #define SLIME_RANDOM_MODIFIER_MAX 0.0003
+
+
+#define EMOTION_HAPPY "happy"
+#define EMOTION_SAD "sad"
+#define EMOTION_SCARED "scared"
+#define EMOTION_FUNNY "funny"
+#define EMOTION_ANGER "anger"
+#define EMOTION_SUPRISED "suprised"
+#define EMOTION_HUNGRY "hungry"

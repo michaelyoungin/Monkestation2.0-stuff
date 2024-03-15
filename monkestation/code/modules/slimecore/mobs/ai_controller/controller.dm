@@ -7,7 +7,7 @@
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
+	idle_behavior = /datum/idle_behavior/idle_slime_playful
 	planning_subtrees = list(
 		//we try to flee first these flip flop based on flee state which is controlled by a componenet on the mob
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item,

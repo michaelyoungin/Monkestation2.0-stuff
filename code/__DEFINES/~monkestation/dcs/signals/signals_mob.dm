@@ -12,3 +12,11 @@
 #define COMSIG_HUNGER_UPDATED "update_hunger_mob"
 #define COMSIG_LIVING_ATE "living_ate_object"
 #define COMSIG_MOB_ADJUST_HUNGER "adjust_hunger_mob"
+
+#define COMSIG_EMOTION_STORE "store_emotion"
+#define COMSIG_EMOTION_RELEASE "release_emotion"
+#define COMSIG_EMOTION_HEARD "heard_emotion"
+
+#define COMSIG_ATOM_JOIN_STACK "join_stack"
+#define COMSIG_STACK_MOVE "stack_move"
+#define COMSIG_CHECK_CAN_ADD_NEW_STACK "check_stack_add"
