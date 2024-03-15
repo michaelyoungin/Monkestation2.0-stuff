@@ -107,13 +107,13 @@
 	if(length(compiled_liked_foods))
 		AddElement(/datum/element/basic_eating, food_types = compiled_liked_foods)
 		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/find_food)
-		ai_controller.set_blackboard_key(BB_BASIC_FOODS, compiled_liked_foods)
+		ai_controller.override_blackboard_key(BB_BASIC_FOODS, compiled_liked_foods) //since list we override
 
 	new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/basic_melee_attack_subtree/slime)
 
 	ai_controller.replace_planning_subtrees(new_planning_subtree)
 
-/mob/living/basic/slime/proc/add_or_replace_tree(/datum/ai_planning_subtree/checker)
+/mob/living/basic/slime/proc/add_or_replace_tree(datum/ai_planning_subtree/checker)
 	if(checker in replacement_trees)
 		return replacement_trees[checker]
 	return checker
