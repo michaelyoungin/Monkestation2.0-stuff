@@ -6709,6 +6709,7 @@
 #include "monkestation\code\modules\slimecore\slime_color_mutations\mutations\_base_mutation.dm"
 #include "monkestation\code\modules\slimecore\slime_color_mutations\mutations\colors.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\_base_trait.dm"
+#include "monkestation\code\modules\slimecore\slime_traits\radioactive.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\slime_cat.dm"
 #include "monkestation\code\modules\spells\spell_types\aoe_spell\mind_swap.dm"
 #include "monkestation\code\modules\spells\spell_types\conjure_item\summon_mjollnir.dm"

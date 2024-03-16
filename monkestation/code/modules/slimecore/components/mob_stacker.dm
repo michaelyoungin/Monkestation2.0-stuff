@@ -58,7 +58,7 @@
 		constant_offset += joiner.get_mob_buckling_height(current_head)
 
 /datum/component/mob_stacker/proc/check_collapse(mob/living/source, atom/movable/new_buckled)
-	if(!new_buckled && !breaking)
+	if(new_buckled != main_dude && !breaking)
 		breaking = TRUE
 		qdel(src)
 
