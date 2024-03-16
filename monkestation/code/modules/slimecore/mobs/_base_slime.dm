@@ -272,3 +272,9 @@
 
 /mob/living/basic/slime/rainbow
 	current_color = /datum/slime_color/rainbow
+
+/mob/living/basic/slime/random
+
+/mob/living/basic/slime/random/Initialize(mapload, datum/slime_color/passed_color)
+	current_color = pick(subtypesof(/datum/slime_color))
+	. = ..()
