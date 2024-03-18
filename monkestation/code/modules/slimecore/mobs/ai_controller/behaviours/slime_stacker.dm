@@ -9,6 +9,9 @@
 	if(controller.pawn.GetComponent(/datum/component/mob_stacker))
 		return FALSE
 
+	if(HAS_TRAIT(controller.pawn, TRAIT_IN_STACK))
+		return FALSE
+
 	//Hiding location is priority
 	var/atom/real_target
 	var/list/potential_targets = list()

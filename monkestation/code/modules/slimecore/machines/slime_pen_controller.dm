@@ -59,7 +59,7 @@
 				mob_string += "[mutation_data.latch_needed[mob]] units of genetic data from [initial(mob.name)]. \n"
 			var/item_string
 			for(var/obj/item/item as anything in mutation_data.needed_items)
-				mob_string += "[initial(item.name)]. \n"
+				item_string += "[initial(item.name)]. \n"
 
 			mutation_info += list(
 				"color" = capitalize(initial(mutation_data.output.name)),

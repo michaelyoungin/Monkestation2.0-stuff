@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Table, Tabs, Collapsible, Stack, LabeledList, ProgressBar } from '../components';
+import { Box, Table, Tabs, Collapsible, Stack, LabeledList, ProgressBar, Section, Button } from '../components';
 import { Window } from '../layouts';
 import { toFixed } from 'common/math';
 
@@ -27,7 +27,6 @@ export const SlimePenController = (_, context) => {
 const SlimeData = (_, context) => {
   const { data } = useBackend(context);
   const { slimes } = data;
-
   return (
     <Table>
       {slimes.map((slime) => (
@@ -74,13 +73,33 @@ const SlimeData = (_, context) => {
                     {toFixed(slime.mutation_chance, 0.1) + ' %'}
                   </ProgressBar>
                 </LabeledList.Item>
-                <LabeledList.Item label="Slime Color">
-                  <Collapsible title={slime.slime_color}>
-                    <LabeledList>
-                      <LabeledList.Item label="Possible Mutations">
-                        <Collapsible />
-                      </LabeledList.Item>
-                    </LabeledList>
+                <LabeledList.Item label="Possible Mutations">
+                  <Collapsible title={slime.slime_color + ' Mutations'}>
+                    {slime.possible_mutations.map((mutation) => (
+                      <Section
+                        key={mutation.color}
+                        backgroundColor={
+                          !mutation.mobs_needed & !mutation.items_needed
+                            ? 'green'
+                            : ''
+                        }>
+                        <Stack>
+                          <Box>{mutation.color + ' Slime'}</Box>
+                          <Button
+                            ml="10px"
+                            icon={'spider'}
+                            disabled={!mutation.mobs_needed}
+                            tooltip={mutation.mobs_needed}
+                          />
+                          <Button
+                            ml="10px"
+                            icon={'drumstick-bite'}
+                            disabled={!mutation.items_needed}
+                            tooltip={mutation.items_needed}
+                          />
+                        </Stack>
+                      </Section>
+                    ))}
                   </Collapsible>
                 </LabeledList.Item>
               </LabeledList>

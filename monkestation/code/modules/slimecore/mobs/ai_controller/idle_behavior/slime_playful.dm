@@ -16,5 +16,5 @@
 		var/move_dir = pick(GLOB.alldirs)
 		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
 
-	if(prob(100)) //change this as we see fit
+	if(prob(10)) //change this as we see fit
 		controller.queue_behavior(pick(playing_types))

@@ -86,6 +86,7 @@
 			for(var/i in 1 to listed_request.extracts_needed)
 				new listed_request.extract_path(box)
 			current_requests -= listed_request
+			listed_request.finish_request(console)
 			qdel(listed_request)
 			return TRUE
 	return FALSE
@@ -173,6 +174,13 @@
 		host_card.registered_account.adjust_money(payout * 0.5, "Slime Extract Request Cancelled Early")
 	console.stored_credits += payout * 0.5
 	qdel(src)
+
+/datum/extract_request_data/proc/finish_request(obj/machinery/computer/slime_market/console)
+	console.say("[host_card.registered_name]'s request has been collected.")
+	console.stored_credits += payout
+	SSresearch.xenobio_points += payout * 3
+	qdel(src)
+
 
 /datum/extract_request_data/proc/add_extract()
 	extracts_given++

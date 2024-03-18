@@ -12,12 +12,14 @@
 
 	var/max_size = 1
 
+
 /datum/component/mob_stacker/Initialize(...)
 	. = ..()
 	main_dude = parent
 	current_head = parent
 	max_size = rand(1, 7)
 	main_dude.max_buckled_mobs = max_size
+	addtimer(CALLBACK(src, PROC_REF(destroy_self)), rand(30 SECONDS, 120 SECONDS))
 
 /datum/component/mob_stacker/RegisterWithParent()
 	. = ..()
@@ -70,3 +72,6 @@
 		return TRUE
 	else
 		return FALSE
+
+/datum/component/mob_stacker/proc/destroy_self()
+	qdel(src)
