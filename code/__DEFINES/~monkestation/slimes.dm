@@ -18,6 +18,7 @@
 #define TRAIT_SLIME_RABID "slime_rabid"
 
 #define TRAIT_OVERFED "overfed_trait"
+#define VACPACK_THROW "vacpack_throw"
 
 ///from obj/item/vacuum_nozzle/afterattack(atom/movable/target, mob/user, proximity, params): (obj/item/vacuum_nozzle/nozzle, mob/user)
 #define COMSIG_LIVING_VACUUM_PRESUCK "living_vacuum_presuck"

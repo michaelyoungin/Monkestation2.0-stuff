@@ -73,14 +73,15 @@ SUBSYSTEM_DEF(research)
 
 	var/list/slime_core_prices = list()
 
-	var/static/list/default_core_prices = list(SLIME_VALUE_TIER_1,
-									   SLIME_VALUE_TIER_2,
-									   SLIME_VALUE_TIER_3,
-									   SLIME_VALUE_TIER_4,
-									   SLIME_VALUE_TIER_5,
-									   SLIME_VALUE_TIER_6,
-									   SLIME_VALUE_TIER_7,
-									   )
+	var/static/list/default_core_prices = list(
+		SLIME_VALUE_TIER_1,
+		SLIME_VALUE_TIER_2,
+		SLIME_VALUE_TIER_3,
+		SLIME_VALUE_TIER_4,
+		SLIME_VALUE_TIER_5,
+		SLIME_VALUE_TIER_6,
+		SLIME_VALUE_TIER_7,
+	)
 
 /datum/controller/subsystem/research/Initialize()
 	point_types = TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES

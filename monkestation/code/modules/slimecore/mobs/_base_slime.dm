@@ -4,6 +4,7 @@
 	icon_state = "baby grey slime"
 
 	ai_controller = /datum/ai_controller/basic_controller/slime
+	density = FALSE
 
 	pass_flags = PASSTABLE | PASSGRILLE
 	gender = NEUTER
@@ -52,6 +53,16 @@
 
 	///this is a list of trees that we replace goes from base = replaced
 	var/list/replacement_trees = list()
+	///this is our emotion overlay states
+	var/list/emotion_states = list(
+		EMOTION_HAPPY = "aslime-happy",
+		EMOTION_SAD = "aslime-sad",
+		EMOTION_ANGER = "aslime-angry",
+		EMOTION_FUNNY = "aslime-mischevous",
+		EMOTION_SCARED = "aslime-scared",
+		EMOTION_SUPRISED = "aslime-happy",
+		EMOTION_HUNGRY = "aslime-pout",
+	)
 
 /mob/living/basic/slime/Initialize(mapload, datum/slime_color/passed_color)
 	. = ..()
@@ -69,6 +80,7 @@
 	AddComponent(/datum/component/liquid_secretion, current_color.secretion_path, 10, 10 SECONDS, TYPE_PROC_REF(/mob/living/basic/slime, check_secretion))
 	AddComponent(/datum/component/generic_mob_hunger, 400, 0.1, 5 MINUTES, 200)
 	AddComponent(/datum/component/scared_of_item, 5)
+	AddComponent(/datum/component/emotion_buffer, emotion_states)
 
 	RegisterSignal(src, COMSIG_HUNGER_UPDATED, PROC_REF(hunger_updated))
 	RegisterSignal(src, COMSIG_MOB_OVERATE, PROC_REF(attempt_change))
@@ -278,3 +290,8 @@
 /mob/living/basic/slime/random/Initialize(mapload, datum/slime_color/passed_color)
 	current_color = pick(subtypesof(/datum/slime_color))
 	. = ..()
+
+/mob/living/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(HAS_TRAIT(src, VACPACK_THROW))
+		REMOVE_TRAIT(src, VACPACK_THROW, "vacpack")

@@ -1591,12 +1591,8 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/restrooms)
 "aDQ" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/item/disk/vacuum_upgrade/biomass,
-/obj/item/vacuum_pack,
+/obj/machinery/chem_heater/withbuffer,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "aDR" = (
@@ -1954,13 +1950,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
-"aJQ" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4;
-	name = "killroom vent"
-	},
-/turf/open/floor/circuit/telecomms,
-/area/station/science/xenobiology)
 "aJS" = (
 /turf/closed/wall/r_wall,
 /area/station/ai_monitored/turret_protected/ai_upload)
@@ -13028,6 +13017,10 @@
 "eTk" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/duct,
+/obj/machinery/camera/directional/south{
+	c_tag = "Xenobiology Lab - Central North";
+	network = list("ss13","rd","xeno")
+	},
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "eTn" = (
@@ -14311,12 +14304,10 @@
 /area/station/science/xenobiology/hallway)
 "frt" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8
-	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/small/directional/south,
+/obj/machinery/chem_master,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "fru" = (
@@ -17866,7 +17857,6 @@
 	c_tag = "Xenobiology Lab - Central East";
 	network = list("ss13","rd","xeno")
 	},
-/obj/machinery/firealarm/directional/west,
 /obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
@@ -18295,7 +18285,6 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/station/science/server)
 "gSM" = (
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line,
@@ -18640,8 +18629,8 @@
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "gXw" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
-/turf/open/floor/circuit/telecomms,
+/mob/living/basic/slime,
+/turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "gXz" = (
 /obj/machinery/duct,
@@ -19257,14 +19246,6 @@
 	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
-"hja" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/chem_master,
-/obj/effect/turf_decal/tile/purple/fourcorners,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "hjo" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -24066,14 +24047,6 @@
 /mob/living/basic/lizard/wags_his_tail,
 /turf/open/floor/plating,
 /area/station/service/janitor)
-"iMR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/duct,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "iMS" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line,
@@ -24971,18 +24944,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"jbk" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology Lab - Central South";
-	dir = 9;
-	network = list("ss13","rd","xeno")
-	},
-/obj/machinery/status_display/ai/directional/north,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "jbq" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/primary/aft)
@@ -25379,6 +25340,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
+"jhX" = (
+/obj/machinery/corral_corner{
+	mapping_id = "1"
+	},
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "jhY" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/bed/dogbed,
@@ -25418,14 +25385,14 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "jjj" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/item/disk/vacuum_upgrade/biomass,
 /obj/item/vacuum_pack,
+/obj/item/vacuum_pack,
+/obj/item/disk/vacuum_upgrade/biomass,
+/obj/structure/table/glass,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "jjm" = (
@@ -26307,6 +26274,14 @@
 /obj/effect/mapping_helpers/airlock/access/any/command/general,
 /turf/open/floor/wood,
 /area/station/command/corporate_showroom)
+"jxa" = (
+/obj/machinery/camera/directional/west,
+/obj/machinery/light/small/directional/west,
+/obj/machinery/corral_corner{
+	mapping_id = "1"
+	},
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "jxc" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -27439,15 +27414,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
-"jSj" = (
-/obj/machinery/door/airlock/research{
-	glass = 1;
-	name = "Slime Euthanization Chamber";
-	opacity = 0
-	},
-/obj/effect/mapping_helpers/airlock/access/all/science/xenobio,
-/turf/open/floor/iron,
-/area/station/science/xenobiology)
 "jSm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
@@ -33038,16 +33004,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
-"lTi" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera/directional/south{
-	c_tag = "Xenobiology Lab - Central North";
-	network = list("ss13","rd","xeno")
-	},
-/obj/machinery/status_display/ai/directional/south,
-/obj/machinery/duct,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "lTj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -36546,7 +36502,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "ncF" = (
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -38871,7 +38826,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/chem_heater/withbuffer,
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
@@ -44722,17 +44676,6 @@
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
-"pXo" = (
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8;
-	initialize_directions = 4;
-	name = "euthanization chamber freezer"
-	},
-/obj/machinery/light/small/directional/north,
-/turf/open/floor/iron,
-/area/station/science/xenobiology)
 "pXA" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -44801,13 +44744,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
-"pZi" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 1;
-	name = "killroom vent"
-	},
-/turf/open/floor/circuit/telecomms,
-/area/station/science/xenobiology)
 "pZn" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -49044,11 +48980,6 @@
 /obj/item/multitool,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
-"rzz" = (
-/obj/structure/sign/warning/cold_temp,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/engine,
-/area/station/science/xenobiology)
 "rzB" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -51255,6 +51186,13 @@
 "sjP" = (
 /turf/closed/wall/r_wall,
 /area/station/security/prison/safe)
+"skh" = (
+/obj/machinery/light/small/directional/west,
+/obj/machinery/corral_corner{
+	mapping_id = "1"
+	},
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "skt" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/tile/blue{
@@ -60439,13 +60377,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
-"vvD" = (
-/obj/machinery/camera/directional/east{
-	c_tag = "Xenobiology Lab - Euthanasia Chamber";
-	network = list("ss13","rd","xeno")
-	},
-/turf/open/floor/circuit/telecomms,
-/area/station/science/xenobiology)
 "vvH" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering/glass{
@@ -60830,18 +60761,6 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
-"vDV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/table/glass,
-/obj/machinery/reagentgrinder{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/tile/purple/fourcorners,
-/turf/open/floor/iron/white,
-/area/station/science/xenobiology)
 "vEd" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/processor{
@@ -61943,14 +61862,16 @@
 /area/station/medical/treatment_center)
 "vXi" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8
-	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/small/directional/north,
+/obj/structure/table/glass,
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "vXt" = (
@@ -63619,6 +63540,7 @@
 	},
 /obj/machinery/light/directional/west,
 /obj/machinery/duct,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "wCL" = (
@@ -113216,8 +113138,8 @@ xVu
 dgz
 eTk
 xVu
-hja
-vDV
+nSC
+nSC
 nSC
 xVu
 pJf
@@ -113471,13 +113393,13 @@ kHt
 iOZ
 idF
 faD
-lTi
-xVu
-cXP
-cXP
-cXP
-xVu
-jbk
+mJQ
+skh
+ycv
+ycv
+ycv
+jxa
+lVB
 mJQ
 pVR
 hCw
@@ -113729,11 +113651,11 @@ tGS
 uKW
 wgJ
 mJQ
-cXP
-aJQ
+ycv
+ycv
 gXw
-pZi
-cXP
+ycv
+ycv
 lVB
 mJQ
 pDl
@@ -113986,11 +113908,11 @@ iOZ
 trL
 faD
 mJQ
-cXP
-gXw
-gXw
-vvD
-cXP
+ycv
+ycv
+ycv
+ycv
+ycv
 lVB
 mJQ
 eSC
@@ -114243,11 +114165,11 @@ idA
 xVu
 uQu
 mJQ
-xVu
-pXo
-jSj
-rzz
-xVu
+jhX
+ycv
+ycv
+ycv
+jhX
 lVB
 exu
 xVu
@@ -114504,7 +114426,7 @@ gKD
 fdZ
 fdZ
 fdZ
-iMR
+fdZ
 bnQ
 psc
 wCH
