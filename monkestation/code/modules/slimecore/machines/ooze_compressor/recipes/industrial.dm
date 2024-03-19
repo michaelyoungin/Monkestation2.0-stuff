@@ -5,9 +5,16 @@
 		)
 	output_item = /obj/item/slimecross/industrial/grey
 
-/datum/compressor_recipe/crossbreed/industrial_orange
+/datum/compressor_recipe/crossbreed/industrial_metal
 	required_oozes = list(
 		/datum/reagent/slime_ooze/metal = 200,
+		)
+	output_item = /obj/item/slimecross/industrial/metal
+
+/datum/compressor_recipe/crossbreed/industrial_orange
+	required_oozes = list(
+		/datum/reagent/slime_ooze/metal = 100,
+		/datum/reagent/slime_ooze/orange = 100,
 		)
 	output_item = /obj/item/slimecross/industrial/orange
 
@@ -122,6 +129,20 @@
 		/datum/reagent/slime_ooze/metal = 100,
 		)
 	output_item = /obj/item/slimecross/industrial/lightpink
+
+/datum/compressor_recipe/crossbreed/industrial_adamantine
+	required_oozes = list(
+		/datum/reagent/slime_ooze/adamantine = 100,
+		/datum/reagent/slime_ooze/metal = 100,
+		)
+	output_item = /obj/item/slimecross/industrial/adamantine
+
+/datum/compressor_recipe/crossbreed/industrial_cerulean
+	required_oozes = list(
+		/datum/reagent/slime_ooze/cerulean = 100,
+		/datum/reagent/slime_ooze/metal = 100,
+		)
+	output_item = /obj/item/slimecross/industrial/cerulean
 
 /datum/compressor_recipe/crossbreed/industrial_rainbow
 	required_oozes = list(

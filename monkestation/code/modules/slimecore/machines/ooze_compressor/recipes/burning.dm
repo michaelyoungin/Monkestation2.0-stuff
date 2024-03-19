@@ -67,6 +67,13 @@
 		)
 	output_item = /obj/item/slimecross/burning/bluespace
 
+/datum/compressor_recipe/crossbreed/burning_cerulean
+	required_oozes = list(
+		/datum/reagent/slime_ooze/cerulean = 100,
+		/datum/reagent/slime_ooze/orange = 100,
+		)
+	output_item = /obj/item/slimecross/burning/cerulean
+
 /datum/compressor_recipe/crossbreed/burning_sepia
 	required_oozes = list(
 		/datum/reagent/slime_ooze/sepia = 100,
@@ -129,6 +136,13 @@
 		/datum/reagent/slime_ooze/orange = 100,
 		)
 	output_item = /obj/item/slimecross/burning/lightpink
+
+/datum/compressor_recipe/crossbreed/burning_adamantine
+	required_oozes = list(
+		/datum/reagent/slime_ooze/adamantine = 100,
+		/datum/reagent/slime_ooze/orange = 100,
+		)
+	output_item = /obj/item/slimecross/burning/adamantine
 
 /datum/compressor_recipe/crossbreed/burning_rainbow
 	required_oozes = list(
