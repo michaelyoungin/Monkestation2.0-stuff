@@ -8,6 +8,9 @@
 	///what buttons do we show in the trait menu ie FOOD_CHANGE, ENVIRONMENT_CHANGE
 	var/list/menu_buttons = list()
 
+	///this is type paths of traits don't work together
+	var/list/incompatible_traits = list()
+
 	///our host slime
 	var/mob/living/basic/slime/host
 

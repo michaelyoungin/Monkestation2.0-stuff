@@ -196,9 +196,14 @@
 	update_appearance()
 
 /mob/living/basic/slime/proc/add_trait(datum/slime_trait/added_trait)
+	for(var/datum/slime_trait/trait as anything in slime_traits)
+		if(added_trait in trait.incompatible_traits)
+			return FALSE
+
 	var/datum/slime_trait/new_trait = new added_trait
 	new_trait.on_add(src)
 	slime_traits += new_trait
+	return TRUE
 
 /mob/living/basic/slime/proc/remove_trait(datum/slime_trait/removed_trait)
 	slime_traits -= removed_trait

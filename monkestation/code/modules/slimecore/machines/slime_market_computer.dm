@@ -19,6 +19,8 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	var/obj/machinery/slime_extract_requestor/request_pad
 	var/stored_credits = 0
 
+	var/static/list/slime_shop_items = list()
+
 /obj/machinery/computer/slime_market/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(!GLOB.default_slime_market && is_station_level(z))
@@ -79,6 +81,25 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 		ui = new(user, src, "XenobioMarket", name)
 		ui.open()
 
+/obj/machinery/computer/slime_market/ui_static_data(mob/user)
+	var/list/data = list()
+	if(!length(slime_shop_items))
+		for(var/datum/slime_store_item/subtype as anything in subtypesof(/datum/slime_store_item))
+			slime_shop_items += new subtype
+
+	data["shop_items"] = list()
+	for(var/datum/slime_store_item/listed as anything in slime_shop_items)
+		var/list/shop_item = list()
+		shop_item += list(
+			"name" = listed.name,
+			"desc" = listed.desc,
+			"icon_state" = initial(listed.item_path.icon_state),
+			"cost" = listed.cost,
+			"item_path" = listed.item_path,
+		)
+		data["shop_items"] += list(shop_item)
+	return data
+
 /obj/machinery/computer/slime_market/ui_data()
 	var/data = list()
 	var/list/prices = list()
@@ -112,6 +133,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 			price_row.Add(list(list("key" = iter % 4)))
 			iter += 1
 
+	data["points"] = SSresearch.xenobio_points
 	data["prices"] = prices
 	data["requests"] = list()
 	if(request_pad)
@@ -129,9 +151,24 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
 	return data
 
+/obj/machinery/computer/slime_market/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("buy")
+			for(var/datum/slime_store_item/item as anything in slime_shop_items)
+				if(text2path(params["path"]) == item.item_path)
+					try_buy(item)
+					return TRUE
 
 /obj/machinery/computer/slime_market/proc/return_extracts(obj/item/slime_extract/type, amount)
 	for(var/i in 1 to amount)
 		new type(loc)
 
-
+/obj/machinery/computer/slime_market/proc/try_buy(datum/slime_store_item/attempt)
+	if(SSresearch.xenobio_points < attempt.cost)
+		return
+	new attempt.item_path(get_turf(src))
+	SSresearch.xenobio_points -= attempt.cost

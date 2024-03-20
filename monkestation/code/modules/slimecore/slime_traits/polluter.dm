@@ -2,6 +2,7 @@
 	name = "Polluter"
 	desc = "Emits large quanitities of pollution."
 	menu_buttons = list(ENVIRONMENT_CHANGE)
+	incompatible_traits = list(/datum/slime_trait/cleaner)
 
 /datum/slime_trait/polluter/on_add(mob/living/basic/slime/parent)
 	. = ..()

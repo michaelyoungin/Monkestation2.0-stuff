@@ -2,6 +2,7 @@
 	name = "Cleaner"
 	desc = "Changes the slime to consume pollution and grime."
 	menu_buttons = list(FOOD_CHANGE, DOCILE_CHANGE, BEHAVIOUR_CHANGE)
+	incompatible_traits = list(/datum/slime_trait/polluter)
 
 	///decals we can clean
 	var/static/list/cleanable_decals = typecacheof(list(
