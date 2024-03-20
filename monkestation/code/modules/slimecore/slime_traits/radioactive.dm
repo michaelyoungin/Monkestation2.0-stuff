@@ -1,6 +1,7 @@
 /datum/slime_trait/radioactive
 	name = "Radioactive"
 	desc = "Emits violent rays of radiation."
+	menu_buttons = list(ENVIRONMENT_CHANGE, DANGEROUS_CHANGE)
 
 /datum/slime_trait/radioactive/on_add(mob/living/basic/slime/parent)
 	. = ..()

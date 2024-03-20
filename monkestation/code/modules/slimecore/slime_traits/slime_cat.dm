@@ -4,6 +4,7 @@
 
 	trait_icon_state = "cat_ears"
 	trait_icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
+	menu_buttons = list(FOOD_CHANGE, DOCILE_CHANGE, BEHAVIOUR_CHANGE)
 
 /datum/slime_trait/visual/cat/on_add(mob/living/basic/slime/parent)
 	. = ..()

@@ -70,6 +70,20 @@
 			)
 			slime_data["possible_mutations"] += list(mutation_info)
 
+		slime_data["traits"] = list()
+		for(var/datum/slime_trait/trait as anything in slime.slime_traits)
+			var/list/trait_data = list()
+			trait_data += list(
+				"name" = trait.name,
+				"desc" = trait.desc,
+				"food" = (FOOD_CHANGE in trait.menu_buttons),
+				"environment" = (ENVIRONMENT_CHANGE in trait.menu_buttons),
+				"behaviour" = (BEHAVIOUR_CHANGE in trait.menu_buttons),
+				"danger" = (DANGEROUS_CHANGE in trait.menu_buttons),
+				"docile" = (DOCILE_CHANGE in trait.menu_buttons),
+			)
+			slime_data["traits"] += list(trait_data)
+
 		data["slimes"] += list(slime_data)
 
 	data["corral_upgrades"] = list()

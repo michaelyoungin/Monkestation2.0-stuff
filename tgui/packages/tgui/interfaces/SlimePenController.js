@@ -42,7 +42,7 @@ const SlimeData = (_, context) => {
                       good: [70, 100],
                     }}
                     value={slime.health}
-                    minValue={-100}
+                    minValue={0}
                     maxValue={100}>
                     {toFixed(slime.health, 0.1) + ' %'}
                   </ProgressBar>
@@ -55,7 +55,7 @@ const SlimeData = (_, context) => {
                       good: [70, 100],
                     }}
                     value={slime.hunger_precent * 100}
-                    minValue={-100}
+                    minValue={0}
                     maxValue={100}>
                     {toFixed(slime.hunger_precent * 100, 0.1) + ' %'}
                   </ProgressBar>
@@ -68,7 +68,7 @@ const SlimeData = (_, context) => {
                       good: [70, 100],
                     }}
                     value={slime.mutation_chance}
-                    minValue={-100}
+                    minValue={0}
                     maxValue={100}>
                     {toFixed(slime.mutation_chance, 0.1) + ' %'}
                   </ProgressBar>
@@ -96,6 +96,61 @@ const SlimeData = (_, context) => {
                             icon={'drumstick-bite'}
                             disabled={!mutation.items_needed}
                             tooltip={mutation.items_needed}
+                          />
+                        </Stack>
+                      </Section>
+                    ))}
+                  </Collapsible>
+                </LabeledList.Item>
+                <LabeledList.Item label="Slime Traits">
+                  <Collapsible title="Current Traits">
+                    {slime.traits.map((trait) => (
+                      <Section key={trait.name}>
+                        <Stack>
+                          <Box>{trait.name + ' Slime'}</Box>
+                          <Button
+                            ml="10px"
+                            icon={'drumstick-bite'}
+                            disabled={!trait.food}
+                            tooltip="Changes the Slimes feeding habits."
+                          />
+                          {!!trait.behaviour && (
+                            <Button
+                              ml="5px"
+                              icon={'dice-d6'}
+                              disabled={!trait.behaviour}
+                              tooltip="Changes or Adds new behaviours to the slime."
+                            />
+                          )}
+                          {!!trait.environment && (
+                            <Button
+                              ml="5px"
+                              icon={'igloo'}
+                              disabled={!trait.environment}
+                              tooltip="Requires the Slime's pen be changed to facilitate this trait."
+                            />
+                          )}
+                          {!!trait.danger && (
+                            <Button
+                              ml="5px"
+                              icon={'skull'}
+                              disabled={!trait.danger}
+                              tooltip="This trait makes the slime more dangerous."
+                            />
+                          )}
+                          {!!trait.docile && (
+                            <Button
+                              ml="5px"
+                              icon={'shield-cat'}
+                              disabled={!trait.docile}
+                              tooltip="This makes the slime generally harmless to normal humans."
+                            />
+                          )}
+                          <Button
+                            ml="5px"
+                            icon={'question'}
+                            disabled={!trait.desc}
+                            tooltip={trait.desc}
                           />
                         </Stack>
                       </Section>

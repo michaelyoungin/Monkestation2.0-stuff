@@ -111,17 +111,19 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
 	data["prices"] = prices
 	data["requests"] = list()
-	for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
-		var/list/request_data = list()
-		var/obj/item/request_item = request.extract_path
-		request_data += list(
-			"icon" = initial(request_item.icon_state),
-			"amount" = request.extracts_needed,
-			"name" = request.request_name,
-			"payout" = request.payout,
-			"amount_give" = request.extracts_given,
-		)
-		data["requests"] += list(request_data)
+	if(request_pad)
+		for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
+			var/list/request_data = list()
+			var/obj/item/request_item = request.extract_path
+			request_data += list(
+				"icon" = initial(request_item.icon_state),
+				"amount" = request.extracts_needed,
+				"name" = request.request_name,
+				"payout" = request.payout,
+				"amount_give" = request.extracts_given,
+			)
+			data["requests"] += list(request_data)
+
 	return data
 
 

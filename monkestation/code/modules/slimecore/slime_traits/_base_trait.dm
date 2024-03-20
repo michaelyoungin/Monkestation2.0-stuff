@@ -5,6 +5,9 @@
 	//flags this trait has like TRAIT_PROCESS, TRAIT_ON_DEATH, TRAIT_ON_LIFE, etc
 	var/trait_flags = NONE
 
+	///what buttons do we show in the trait menu ie FOOD_CHANGE, ENVIRONMENT_CHANGE
+	var/list/menu_buttons = list()
+
 	///our host slime
 	var/mob/living/basic/slime/host
 

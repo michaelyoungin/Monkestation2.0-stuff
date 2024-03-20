@@ -3,6 +3,9 @@
 	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
 	icon_state = "baby grey slime"
 
+	maxHealth = 150
+	health = 150
+
 	ai_controller = /datum/ai_controller/basic_controller/slime
 	density = FALSE
 
@@ -44,6 +47,8 @@
 	var/list/possible_color_mutations = list()
 
 	var/list/compiled_liked_foods = list()
+	///this is our list of trait foods
+	var/list/trait_foods = list()
 	///the in progress mutation used for descs
 	var/datum/slime_color/mutating_into
 	///this is our mutation chance
@@ -104,14 +109,21 @@
 	UnregisterSignal(src, COMSIG_HUNGER_UPDATED)
 	QDEL_NULL(current_color)
 
+/mob/living/basic/slime/proc/rebuild_foods()
+	compiled_liked_foods |= trait_foods
+
 /mob/living/basic/slime/proc/recompile_ai_tree()
 	var/list/new_planning_subtree = list()
+	rebuild_foods()
 
 	RemoveElement(/datum/element/basic_eating)
 
 	if(!HAS_TRAIT(src, TRAIT_SLIME_RABID))
 		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/simple_find_nearest_target_to_flee_has_item)
 		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/flee_target)
+
+	if(slime_flags & CLEANER_SLIME)
+		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/cleaning_subtree)
 
 	if(!(slime_flags & PASSIVE_SLIME))
 		new_planning_subtree |= add_or_replace_tree(/datum/ai_planning_subtree/simple_find_target_no_trait/slime)
@@ -280,7 +292,12 @@
 		worn_accessory.forceMove(get_turf(user))
 		update_appearance()
 
-
+/mob/living/basic/slime/Life(seconds_per_tick, times_fired)
+	if(isopenturf(loc))
+		var/turf/open/my_our_turf = loc
+		if(my_our_turf.pollution)
+			my_our_turf.pollution.touch_act(src)
+	. = ..()
 
 /mob/living/basic/slime/rainbow
 	current_color = /datum/slime_color/rainbow

@@ -3,6 +3,7 @@
 #define STORED_SLIME (1<<2)
 #define MUTATING_SLIME (1<<3)
 #define SPLITTING_SLIME (1<<4)
+#define CLEANER_SLIME (1<<5)
 
 #define TRAIT_ON_DEATH (1<<0)
 #define TRAIT_VISUAL (1<<1)
@@ -16,6 +17,7 @@
 
 #define TRAIT_SLIME_STASIS "slime_stasis"
 #define TRAIT_SLIME_RABID "slime_rabid"
+#define TRAIT_SLIME_DUST_IMMUNE "slime_dust_immune"
 
 #define TRAIT_OVERFED "overfed_trait"
 #define VACPACK_THROW "vacpack_throw"
@@ -49,3 +51,23 @@
 #define EMOTION_ANGER "anger"
 #define EMOTION_SUPRISED "suprised"
 #define EMOTION_HUNGRY "hungry"
+
+///key that holds decals we hunt
+#define BB_CLEANABLE_DECALS "cleanable_decals"
+///key that holds blood we hunt
+#define BB_CLEANABLE_BLOOD "cleanable_blood"
+///key that holds pests we hunt
+#define BB_HUNTABLE_PESTS "huntable_pests"
+///key that holds drawings we hunt
+#define BB_CLEANABLE_DRAWINGS "cleanable_drawings"
+///Key that holds our clean target
+#define BB_CLEAN_TARGET "clean_target"
+///key that holds trash we will burn
+#define BB_HUNTABLE_TRASH "huntable_trash"
+
+
+#define FOOD_CHANGE "food_change"
+#define ENVIRONMENT_CHANGE "enviro_change"
+#define BEHAVIOUR_CHANGE "behaviour_change"
+#define DANGEROUS_CHANGE "dangerous_change"
+#define DOCILE_CHANGE "docile_change"
