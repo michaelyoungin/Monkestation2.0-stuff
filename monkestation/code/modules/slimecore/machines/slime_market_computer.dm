@@ -30,8 +30,11 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	. = ..()
 	if(GLOB.default_slime_market == src)
 		GLOB.default_slime_market = null
-	market_pad.console = null
-	request_pad.console = null
+
+	if(market_pad)
+		market_pad.console = null
+	if(request_pad)
+		request_pad.console = null
 
 	request_pad = null
 	market_pad = null

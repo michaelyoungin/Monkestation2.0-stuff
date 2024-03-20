@@ -113,6 +113,11 @@
 	for(var/datum/slime_trait/trait as anything in slime_traits)
 		remove_trait(trait)
 	UnregisterSignal(src, COMSIG_HUNGER_UPDATED)
+	UnregisterSignal(src, COMSIG_MOB_OVERATE)
+
+	for(var/datum/slime_mutation_data/mutation as anything in possible_color_mutations)
+		qdel(mutation)
+
 	QDEL_NULL(current_color)
 
 /mob/living/basic/slime/proc/rebuild_foods()
