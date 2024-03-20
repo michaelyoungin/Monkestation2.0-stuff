@@ -16,6 +16,7 @@
 #define COMSIG_EMOTION_STORE "store_emotion"
 #define COMSIG_EMOTION_RELEASE "release_emotion"
 #define COMSIG_EMOTION_HEARD "heard_emotion"
+#define EMOTION_BUFFER_UPDATE_OVERLAY_STATES "update_emotion_overlay"
 
 #define COMSIG_ATOM_JOIN_STACK "join_stack"
 #define COMSIG_STACK_MOVE "stack_move"

@@ -50,6 +50,7 @@
 	. = ..()
 	if(length(emotional_overlays))
 		RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(emotion_overlay))
+		RegisterSignal(parent, EMOTION_BUFFER_UPDATE_OVERLAY_STATES, PROC_REF(replace_overlays))
 
 	RegisterSignal(parent, COMSIG_EMOTION_STORE, PROC_REF(register_emotional_data))
 
@@ -80,3 +81,7 @@
 	if(source.health <= 0)
 		return
 	overlays += mutable_appearance(source.icon, emotional_overlays[current_emotion], source.layer, source)
+
+/datum/component/emotion_buffer/proc/replace_overlays(mob/living/source, list/new_icon_states)
+	emotional_overlays = list()
+	emotional_overlays += new_icon_states
