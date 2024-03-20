@@ -4,6 +4,7 @@
 #define MUTATING_SLIME (1<<3)
 #define SPLITTING_SLIME (1<<4)
 #define CLEANER_SLIME (1<<5)
+#define OVERWRITES_COLOR (1<<6)
 
 #define TRAIT_ON_DEATH (1<<0)
 #define TRAIT_VISUAL (1<<1)

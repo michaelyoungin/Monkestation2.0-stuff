@@ -45,5 +45,10 @@
 		return
 
 	var/mutable_appearance/slime_visual = mutable_appearance(trait_icon, trait_icon_state, host.layer, host, host.plane)
-	slime_visual.color = host.current_color.slime_color
+
+	if(!host.overwrite_color)
+		slime_visual.color = host.current_color.slime_color
+	else
+		slime_visual.color = host.overwrite_color
+
 	overlays += slime_visual

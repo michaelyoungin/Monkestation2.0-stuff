@@ -71,6 +71,10 @@
 		EMOTION_HUNGRY = "aslime-pout",
 	)
 
+	///if set and with the trait replaces the grey part with this
+	var/icon_state_override
+	var/overwrite_color
+
 /mob/living/basic/slime/Initialize(mapload, datum/slime_color/passed_color)
 	. = ..()
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SLIME, 0.5, -11)
@@ -145,14 +149,18 @@
 	return checker
 
 /mob/living/basic/slime/proc/update_slime_varience()
+	var/prefix = "grey"
+	if(icon_state_override)
+		prefix = icon_state_override
 	if(slime_flags & ADULT_SLIME)
-		icon_state = "grey adult slime"
-		icon_dead = "grey baby slime dead"
+		icon_state = "[prefix] adult slime"
+		icon_dead = "[prefix] baby slime dead"
 	else
-		icon_state = "grey baby slime"
-		icon_dead = "grey baby slime dead"
+		icon_state = "[prefix] baby slime"
+		icon_dead = "[prefix] baby slime dead"
 
-	color = current_color.slime_color
+	if(!(slime_flags & OVERWRITES_COLOR))
+		color = current_color.slime_color
 
 	update_name()
 	SEND_SIGNAL(src, COMSIG_SECRETION_UPDATE, current_color.secretion_path, 10, 10 SECONDS)
