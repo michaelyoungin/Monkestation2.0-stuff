@@ -74,7 +74,9 @@
 
 	current_emotion = emotion
 
-/datum/component/emotion_buffer/proc/emotion_overlay(obj/item/source, list/overlays)
+/datum/component/emotion_buffer/proc/emotion_overlay(mob/living/source, list/overlays)
 	if(!emotional_overlays[current_emotion])
+		return
+	if(source.health <= 0)
 		return
 	overlays += mutable_appearance(source.icon, emotional_overlays[current_emotion], source.layer, source)

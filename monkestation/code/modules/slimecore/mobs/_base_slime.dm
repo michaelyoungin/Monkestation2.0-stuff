@@ -1,7 +1,9 @@
 /mob/living/basic/slime
 	name = "grey baby slime (123)"
 	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
-	icon_state = "baby grey slime"
+	icon_state = "grey baby slime"
+	base_icon_state = "grey baby slime"
+	icon_dead = "grey baby slime dead"
 
 	maxHealth = 150
 	health = 150
@@ -145,8 +147,11 @@
 /mob/living/basic/slime/proc/update_slime_varience()
 	if(slime_flags & ADULT_SLIME)
 		icon_state = "grey adult slime"
+		icon_dead = "grey baby slime dead"
 	else
 		icon_state = "grey baby slime"
+		icon_dead = "grey baby slime dead"
+
 	color = current_color.slime_color
 
 	update_name()
