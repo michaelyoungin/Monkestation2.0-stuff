@@ -59,7 +59,7 @@
 	submit_corners(found_corners)
 
 	if(connected_data)
-		for(var/obj/machinery/slime_pen_controller/controller as anything in GLOB.machines)
+		for(var/obj/machinery/slime_pen_controller/controller in GLOB.machines)
 			if(controller.mapping_id == mapping_id)
 				controller.linked_data = connected_data
 
@@ -109,24 +109,26 @@
 					break
 				steps++
 
-				var/obj/machinery/corral_corner/found_corner = locate(/obj/machinery/corral_corner) in current_turf
+				for(var/obj/machinery/corral_corner/found_corner as anything in current_turf.contents)
+					if(!istype(found_corner))
+						continue
 
-				if(!found_corner)
-					continue
+					if(!found_corner)
+						continue
 
-				if((found_corner == src) && length(steps_and_direction) < 3)
-					continue
+					if((found_corner == src) && length(steps_and_direction) < 3)
+						continue
 
-				if(!(found_corner in corners_left))
-					continue
+					if(!(found_corner in corners_left))
+						continue
 
-				steps--
+					steps--
 
-				corners_left -= found_corner
-				last_found_corner_turf = current_turf
-				found = TRUE
-				steps_and_direction += list("[direction]" = steps)
-				break
+					corners_left -= found_corner
+					last_found_corner_turf = current_turf
+					found = TRUE
+					steps_and_direction += list("[direction]" = steps)
+					break
 
 	build_data(steps_and_direction, corners)
 	return TRUE
