@@ -239,6 +239,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/stone,
 /area/station/science/xenobiology)
 "acG" = (
@@ -24849,6 +24850,13 @@
 /obj/structure/sink/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/science/genetics)
+"fZo" = (
+/obj/machinery/corral_corner{
+	mapping_id = "3"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "fZp" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -58591,6 +58599,13 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
+"omu" = (
+/obj/machinery/corral_corner{
+	mapping_id = "4"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "omv" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -62729,13 +62744,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
-"prG" = (
-/obj/machinery/duct,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/stone,
-/area/station/science/xenobiology)
 "prJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -64931,12 +64939,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/aisat/exterior)
-"pRz" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/stone,
-/area/station/science/xenobiology)
 "pRG" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/effect/spawner/random/engineering/tracking_beacon,
@@ -120820,7 +120822,7 @@ fMl
 fMl
 fMl
 fMl
-fMl
+iLv
 oVW
 oUe
 jET
@@ -121077,7 +121079,7 @@ fMl
 fMl
 xsN
 gvX
-fMl
+iLv
 mAt
 aAx
 nxt
@@ -121334,7 +121336,7 @@ fMl
 fMl
 fMl
 gvX
-fMl
+iLv
 mAt
 xIw
 pVk
@@ -121591,7 +121593,7 @@ fOp
 fMl
 fMl
 gvX
-fOp
+fZo
 oVW
 wFP
 pKd
@@ -121844,11 +121846,11 @@ uSs
 eaO
 dxU
 acD
-prG
-prG
-prG
-prG
-pRz
+uSs
+uSs
+uSs
+uSs
+evj
 mAt
 udV
 qYr
@@ -122105,7 +122107,7 @@ mca
 mca
 mca
 lcK
-mca
+pff
 mAt
 ilU
 qYr
@@ -122362,7 +122364,7 @@ qUa
 fMl
 fMl
 gvX
-qUa
+omu
 oVW
 fmi
 qYr
@@ -122619,7 +122621,7 @@ fMl
 fMl
 fMl
 gvX
-fMl
+iLv
 mAt
 kzt
 xQq
@@ -122876,7 +122878,7 @@ fMl
 fMl
 esm
 gvX
-fMl
+iLv
 mAt
 cZl
 mPF
@@ -123133,7 +123135,7 @@ fMl
 fMl
 fMl
 fMl
-fMl
+iLv
 oVW
 oTD
 dOO
