@@ -67756,6 +67756,11 @@
 /obj/effect/turf_decal/bot_white,
 /obj/structure/cable,
 /obj/machinery/biomass_recycler,
+/obj/item/stack/biomass,
+/obj/item/stack/biomass,
+/obj/item/stack/biomass,
+/obj/item/stack/biomass,
+/obj/item/stack/biomass,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "yaj" = (
