@@ -38,7 +38,7 @@
 	density = TRUE
 	var/max_range = 9
 	var/datum/corral_data/connected_data
-	var/mapping_id = ""
+	var/mapping_id
 
 /obj/machinery/corral_corner/Initialize(mapload)
 	. = ..()
@@ -57,6 +57,11 @@
 			continue
 		found_corners += main
 	submit_corners(found_corners)
+
+	if(connected_data)
+		for(var/obj/machinery/slime_pen_controller/controller as anything in GLOB.machines)
+			if(controller.mapping_id == mapping_id)
+				controller.linked_data = connected_data
 
 /obj/machinery/corral_corner/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
