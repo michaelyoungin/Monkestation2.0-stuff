@@ -21692,6 +21692,7 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/slime_extract_requestor,
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
 "ibz" = (
