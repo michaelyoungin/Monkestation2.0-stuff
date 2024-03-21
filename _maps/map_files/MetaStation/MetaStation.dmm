@@ -29591,10 +29591,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
-"kGb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
-/area/station/maintenance/department/science/xenobiology)
 "kGc" = (
 /obj/machinery/computer/rdconsole,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -113831,7 +113827,7 @@ vxa
 ljF
 xiL
 lmn
-kGb
+wrc
 aaa
 aaa
 aaa
@@ -114088,7 +114084,7 @@ mtu
 mtu
 xiL
 lmn
-kGb
+wrc
 aaa
 aaa
 aaa
@@ -114602,7 +114598,7 @@ mtu
 mtu
 xiL
 lmn
-kGb
+wrc
 aaa
 aaa
 aaa

@@ -16754,6 +16754,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/stone,
 /area/station/science/xenobiology)
 "eaQ" = (
@@ -18423,6 +18424,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
+"evj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/stone,
+/area/station/science/xenobiology)
 "evp" = (
 /obj/machinery/computer/records/medical{
 	dir = 8
@@ -34378,6 +34386,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
+"irh" = (
+/obj/machinery/corral_corner{
+	mapping_id = "2"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "irl" = (
 /turf/closed/wall/r_wall,
 /area/station/service/lawoffice)
@@ -35916,6 +35931,10 @@
 "iLr" = (
 /turf/closed/wall,
 /area/station/service/theater/abandoned)
+"iLv" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "iLB" = (
 /obj/structure/sign/directions/evac{
 	pixel_y = -8
@@ -61757,6 +61776,13 @@
 /obj/structure/closet/l3closet/virology,
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
+"pff" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/stone,
+/area/station/science/xenobiology)
 "pfh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -78097,6 +78123,13 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/station/tcommsat/server)
+"tcQ" = (
+/obj/machinery/corral_corner{
+	mapping_id = "1"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "tcT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -85447,6 +85480,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"uSs" = (
+/obj/machinery/duct,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/stone,
+/area/station/science/xenobiology)
 "uSL" = (
 /obj/effect/turf_decal/box/white{
 	color = "#9FED58"
@@ -120767,7 +120808,7 @@ uTb
 hHK
 kGj
 mQO
-fMl
+iLv
 fMl
 fMl
 fMl
@@ -121024,7 +121065,7 @@ qZb
 feF
 gcr
 pTC
-fMl
+iLv
 gvX
 duq
 fMl
@@ -121281,7 +121322,7 @@ pTC
 hhS
 iQF
 pTC
-fMl
+iLv
 gvX
 fMl
 fMl
@@ -121538,7 +121579,7 @@ pTC
 hWk
 gcr
 mQO
-nYS
+tcQ
 gvX
 fMl
 fMl
@@ -121795,11 +121836,11 @@ pTC
 ezY
 iQF
 pTC
-pRz
-prG
-prG
-prG
-prG
+evj
+uSs
+uSs
+uSs
+uSs
 eaO
 dxU
 acD
@@ -122052,7 +122093,7 @@ pTC
 elH
 iQF
 pTC
-mca
+pff
 lcK
 mca
 mca
@@ -122309,7 +122350,7 @@ pTC
 eDZ
 rrU
 mQO
-wts
+irh
 gvX
 fMl
 fMl
@@ -122566,7 +122607,7 @@ pTC
 woj
 qcM
 pTC
-fMl
+iLv
 gvX
 fMl
 fMl
@@ -122823,7 +122864,7 @@ pTC
 woj
 rrU
 pTC
-fMl
+iLv
 gvX
 pQz
 fMl
@@ -123080,7 +123121,7 @@ pTC
 eDZ
 rwI
 mQO
-fMl
+iLv
 fMl
 fMl
 fMl
