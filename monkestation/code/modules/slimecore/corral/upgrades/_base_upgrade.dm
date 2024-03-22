@@ -3,3 +3,6 @@
 	var/desc = "Generic Corral Upgrade Description"
 	///the amount of xenobiology points this pen upgrade costs
 	var/cost = 0
+
+/datum/corral_upgrade/proc/on_add(datum/corral_data/parent)
+	return

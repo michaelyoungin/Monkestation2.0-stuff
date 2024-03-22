@@ -92,10 +92,43 @@
 			"name" = upgrade.name,
 			"desc" = upgrade.desc,
 		))
+
+	data["buyable_upgrades"] = list()
+	for(var/datum/corral_upgrade/listed as anything in subtypesof(/datum/corral_upgrade))
+		var/list/upgrade_data = list()
+		upgrade_data += list(
+			"name" = listed.name,
+			"desc" = listed.desc,
+			"cost" = listed.cost,
+			"owned" = (listed in linked_data.corral_upgrades),
+			"path" = listed.type,
+		)
+		data["buyable_upgrades"] += list(upgrade_data)
+
 	return data
 
 /obj/machinery/slime_pen_controller/ui_act(action, list/params)
 	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("buy")
+			for(var/datum/corral_upgrade/item as anything in subtypesof(/datum/corral_upgrade))
+				if(text2path(params["path"]) == item)
+					try_buy(item)
+					return TRUE
+
+/obj/machinery/slime_pen_controller/proc/try_buy(datum/corral_upgrade/item)
+	if(!linked_data)
+		return
+	if(SSresearch.xenobio_points < initial(item.cost))
+		return
+
+	var/datum/corral_upgrade/new_upgrade = new
+	SSresearch.xenobio_points -= new_upgrade.cost
+	new_upgrade.on_add(linked_data)
+	linked_data.corral_upgrades |= new_upgrade
 
 /obj/machinery/slime_pen_controller/locate_machinery(multitool_connection)
 	if(!mapping_id)
