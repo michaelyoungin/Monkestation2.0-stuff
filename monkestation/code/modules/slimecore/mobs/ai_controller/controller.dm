@@ -3,7 +3,8 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/allow_items,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
 		BB_BASIC_MOB_SCARED_ITEM = /obj/item/extinguisher,
-		BB_BASIC_MOB_STOP_FLEEING = TRUE
+		BB_BASIC_MOB_STOP_FLEEING = TRUE,
+		BB_WONT_TARGET_CLIENTS = FALSE, //specifically to stop targetting clients
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance

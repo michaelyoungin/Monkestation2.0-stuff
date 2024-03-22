@@ -41,6 +41,9 @@
 		if(HAS_TRAIT(pot_target, trait))
 			continue
 
+		if(pot_target.client && controller.blackboard[BB_WONT_TARGET_CLIENTS])
+			continue
+
 		if(checks_size && pot_target.mob_size >= living_mob.mob_size)///hello shitcode department?
 			continue
 

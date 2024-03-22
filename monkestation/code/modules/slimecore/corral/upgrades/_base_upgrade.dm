@@ -6,3 +6,9 @@
 
 /datum/corral_upgrade/proc/on_add(datum/corral_data/parent)
 	return
+
+/datum/corral_upgrade/proc/on_slime_entered(mob/living/basic/slime/slime)
+	return
+
+/datum/corral_upgrade/proc/on_slime_exited(mob/living/basic/slime/slime)
+	return

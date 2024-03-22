@@ -15,6 +15,7 @@
 #define TRAIT_LATCH_FEEDERED "feeder_targetted"
 
 #define BB_BASIC_MOB_SCARED_ITEM "BB_basic_mob_scared_item"
+#define BB_WONT_TARGET_CLIENTS "BB_wont_target_clients"
 
 #define TRAIT_SLIME_STASIS "slime_stasis"
 #define TRAIT_SLIME_RABID "slime_rabid"

@@ -39,6 +39,8 @@
 	if(arrived in managed_slimes)
 		return
 	managed_slimes |= arrived
+	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
+		upgrade.on_slime_entered(arrived)
 
 /datum/corral_data/proc/check_exited(turf/source, atom/movable/gone, direction)
 	if(!istype(gone, /mob/living/basic/slime))
@@ -49,3 +51,5 @@
 		return
 
 	managed_slimes -= gone
+	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
+		upgrade.on_slime_exited(gone)
