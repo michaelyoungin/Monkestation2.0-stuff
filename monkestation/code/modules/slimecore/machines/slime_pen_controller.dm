@@ -125,7 +125,7 @@
 	if(SSresearch.xenobio_points < initial(item.cost))
 		return
 
-	var/datum/corral_upgrade/new_upgrade = new
+	var/datum/corral_upgrade/new_upgrade = new item
 	SSresearch.xenobio_points -= new_upgrade.cost
 	new_upgrade.on_add(linked_data)
 	linked_data.corral_upgrades |= new_upgrade

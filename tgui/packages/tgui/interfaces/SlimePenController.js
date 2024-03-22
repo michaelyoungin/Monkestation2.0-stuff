@@ -22,7 +22,7 @@ export const SlimePenController = (_, context) => {
             selected={tabIndex === 2}
             icon="flask"
             onClick={() => setTabIndex(2)}>
-            Buyable Corral Upgrades
+            Corral Data
           </Tabs.Tab>
         </Tabs>
         <Box>{tabIndex === 1 && <SlimeData />}</Box>
@@ -176,37 +176,72 @@ const SlimeData = (_, context) => {
 
 const StoreViewer = (_, context) => {
   const { data, act } = useBackend(context);
-  const { buyable_upgrades } = data;
+  const { buyable_upgrades, corral_upgrades } = data;
 
   return (
     <Table>
-      {buyable_upgrades.map((item) => (
-        <Section style={{ 'border-radius': '5px' }} mb="6px" key={item.name}>
-          <Stack fill>
-            <Stack.Item>
-              <Box fontSize="16px">{item.name}</Box>
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                ml="10px"
-                mt="7px"
-                icon={'question'}
-                tooltip={item.desc}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                ml="5px"
-                mt="7px"
-                icon={'sack-dollar'}
-                color="green"
-                onClick={() => act('buy', { path: item.path })}>
-                {item.cost + ' Xenobiology Points'}
-              </Button>
-            </Stack.Item>
-          </Stack>
-        </Section>
-      ))}
+      <Collapsible title="Buyable Corral Upgrades">
+        {buyable_upgrades.map((item) => (
+          <Section style={{ 'border-radius': '5px' }} mb="6px" key={item.name}>
+            <Stack fill>
+              <Stack.Item>
+                <Box fontSize="16px">{item.name}</Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  ml="10px"
+                  mt="7px"
+                  icon={'question'}
+                  tooltip={item.desc}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  ml="5px"
+                  mt="7px"
+                  icon={'sack-dollar'}
+                  color="green"
+                  disabled={item.owned}
+                  onClick={() => act('buy', { path: item.path })}>
+                  {item.cost + ' Xenobiology Points'}
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Section>
+        ))}
+      </Collapsible>
+      <Section textAlign="center" fontSize="18px">
+        Corral Data
+      </Section>
+      <LabeledList>
+        <LabeledList.Item label="Corral Upgrades">
+          <Collapsible>
+            {corral_upgrades.map((item) => (
+              <Section
+                style={{ 'border-radius': '5px' }}
+                mb="6px"
+                key={item.name}>
+                <Stack fill>
+                  <Stack.Item>
+                    <Box fontSize="16px">{item.name}</Box>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      ml="10px"
+                      mt="3px"
+                      style={{
+                        'transform': 'scale(1.5)',
+                      }}
+                      icon={'question'}
+                      tooltip={item.desc}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </Section>
+            ))}
+          </Collapsible>
+        </LabeledList.Item>
+      </LabeledList>
     </Table>
   );
 };
