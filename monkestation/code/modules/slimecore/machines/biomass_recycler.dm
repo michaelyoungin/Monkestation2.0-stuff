@@ -179,13 +179,3 @@ GLOBAL_LIST_INIT(biomass_unlocks, list())
 	name = "\"Rockroach\" biomass recycler upgrade disk"
 	printable_types = list(/mob/living/basic/cockroach/rockroach = 0.4)
 	vacuum_printable_types = list(/mob/living/basic/cockroach/rockroach = 0.4)
-
-
-/obj/item/circuitboard/machine/biomass_recycler
-	name = "Monkey Recycler (Machine Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/biomass_recycler
-	req_components = list(
-		/datum/stock_part/matter_bin = 1,
-		/datum/stock_part/manipulator = 1)
-	needs_anchored = FALSE

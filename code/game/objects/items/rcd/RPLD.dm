@@ -298,6 +298,7 @@
 		/obj/machinery/plumbing/growing_vat = 20,
 
 		//category 2 Distributors
+		/obj/machinery/plumbing/ooze_sucker = 5,
 		/obj/machinery/duct = 1,
 		/obj/machinery/plumbing/input = 5,
 		/obj/machinery/plumbing/filter = 5,

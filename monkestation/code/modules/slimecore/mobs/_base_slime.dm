@@ -167,6 +167,9 @@
 	if(!(slime_flags & OVERWRITES_COLOR))
 		color = current_color.slime_color
 
+	if(stat == DEAD)
+		icon_state = icon_dead
+
 	update_name()
 	SEND_SIGNAL(src, COMSIG_SECRETION_UPDATE, current_color.secretion_path, 10, 10 SECONDS)
 
@@ -181,7 +184,8 @@
 /mob/living/basic/slime/proc/check_secretion()
 	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME) || (slime_flags & MUTATING_SLIME))
 		return FALSE
-
+	if(stat == DEAD)
+		return FALSE
 	if(hunger_precent < production_precent)
 		return FALSE
 	return TRUE

@@ -18,6 +18,11 @@
 	qdel(src)
 
 /datum/component/pollution_scrubber/process(seconds_per_tick)
+	if(isliving(parent))
+		var/mob/living/living = parent
+		if(living.stat == DEAD)
+			return
+
 	var/turf/open/turf = get_turf(parent)
 	if(turf.pollution)
 		turf.pollution.scrub_amount(scrubbing_amount)

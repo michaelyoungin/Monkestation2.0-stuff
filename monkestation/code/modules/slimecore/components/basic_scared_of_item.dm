@@ -10,6 +10,11 @@
 /datum/component/scared_of_item/process(seconds_per_tick)
 	var/mob/living/basic/basic_mob = parent
 
+	if(isliving(parent))
+		var/mob/living/living = parent
+		if(living.stat == DEAD)
+			return
+
 	var/broke = FALSE
 	for(var/mob/living/carbon/human/human in oview(range, basic_mob))
 		for(var/obj/item/item as anything in human.held_items)

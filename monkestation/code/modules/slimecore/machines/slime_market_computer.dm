@@ -1,10 +1,5 @@
 GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
-/obj/item/circuitboard/computer/slime_market
-	name = "Slime Market (Computer Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/computer/slime_market
-
 /obj/machinery/computer/slime_market
 	name = "slime market console"
 	desc = "Used to sell slime cores and manage intergalactic slime bounties."

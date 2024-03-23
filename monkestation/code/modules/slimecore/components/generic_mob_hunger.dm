@@ -69,6 +69,11 @@
 	if(hunger_paused || !hunger_drain || (feed_pause_end > world.time))
 		return
 
+	if(isliving(parent))
+		var/mob/living/living = parent
+		if(living.stat == DEAD)
+			return
+
 	if(current_hunger >= hunger_drain)
 		current_hunger -= hunger_drain
 		SEND_SIGNAL(parent, COMSIG_HUNGER_UPDATED, current_hunger, max_hunger)

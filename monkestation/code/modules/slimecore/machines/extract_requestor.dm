@@ -1,13 +1,3 @@
-/obj/item/circuitboard/machine/slime_extract_requestor
-	name = "Extract Request Pad (Machine Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/slime_market_pad
-	req_components = list(
-		/datum/stock_part/manipulator = 2,
-		/obj/item/stack/sheet/glass = 1)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
-
-
 /obj/machinery/slime_extract_requestor
 	name = "extract requestor pad"
 	desc = "A tall device with a hole for retrieving slime extracts."

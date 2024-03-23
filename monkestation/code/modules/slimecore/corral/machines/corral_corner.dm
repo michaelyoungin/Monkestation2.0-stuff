@@ -34,6 +34,7 @@
 
 	icon = 'monkestation/code/modules/slimecore/icons/machinery.dmi'
 	icon_state = "corral_corner"
+	circuit = /obj/item/circuitboard/machine/corral_corner
 
 	density = TRUE
 	var/max_range = 9

@@ -1,13 +1,3 @@
-/obj/item/circuitboard/machine/slime_market_pad
-	name = "Intergalactic Market Pad (Machine Board)"
-	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/slime_market_pad
-	req_components = list(
-		/datum/stock_part/manipulator = 2,
-		/obj/item/stack/sheet/glass = 1)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
-
-
 /obj/machinery/slime_market_pad
 	name = "intergalactic market pad"
 	desc = "A tall device with a hole for inserting slime extracts. IMPs are widely used for trading small items on large distances all over the galaxy."
