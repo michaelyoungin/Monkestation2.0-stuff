@@ -37,8 +37,8 @@
 	main_dude = null
 	current_head = null
 	for(var/mob/living/dude as anything in stacked_mobs)
-		if(isbasic(joiner))
-			var/mob/living/basic/basic = joiner
+		if(isbasicmob(dude))
+			var/mob/living/basic/basic = dude
 			basic.ai_controller?.set_ai_status(AI_STATUS_ON)
 		REMOVE_TRAIT(dude, TRAIT_IN_STACK, "mob_stack")
 		UnregisterSignal(dude, COMSIG_ATOM_JOIN_STACK)
@@ -55,7 +55,7 @@
 
 	if(main_dude.buckle_mob(joiner, force = TRUE))
 		ADD_TRAIT(joiner, TRAIT_IN_STACK, "mob_stack")
-		if(isbasic(joiner))
+		if(isbasicmob(joiner))
 			var/mob/living/basic/basic = joiner
 			basic.ai_controller?.set_ai_status(AI_STATUS_OFF)
 		current_head = joiner
