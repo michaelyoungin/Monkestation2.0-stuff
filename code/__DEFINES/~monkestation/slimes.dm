@@ -20,6 +20,7 @@
 #define TRAIT_SLIME_STASIS "slime_stasis"
 #define TRAIT_SLIME_RABID "slime_rabid"
 #define TRAIT_SLIME_DUST_IMMUNE "slime_dust_immune"
+#define COMSIG_ATOM_SUCKED "atom_sucked"
 
 #define TRAIT_OVERFED "overfed_trait"
 #define VACPACK_THROW "vacpack_throw"

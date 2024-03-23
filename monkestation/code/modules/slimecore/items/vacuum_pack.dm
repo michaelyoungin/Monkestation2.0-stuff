@@ -436,11 +436,13 @@
 	animation_matrix.Translate((user.x - target.x) * 32, (user.y - target.y) * 32)
 	animate(target, alpha = 0, time = 8, easing = QUAD_EASING|EASE_IN, transform = animation_matrix, flags = ANIMATION_PARALLEL)
 	sleep(8)
+	target.unbuckle_all_mobs(TRUE)
 	target.forceMove(pack)
 	pack.stored += target
 	if((VACUUM_PACK_UPGRADE_STASIS in pack.upgrades) && isslime(target))
 		var/mob/living/basic/slime/slime = target
 		ADD_TRAIT(slime, TRAIT_SLIME_STASIS, "vacuum_pack_stasis")
+	SEND_SIGNAL(target, COMSIG_ATOM_SUCKED)
 	if(!silent)
 		user.visible_message(span_warning("[user] sucks [target] into their [pack]!"), span_notice("You successfully suck [target] into your [src]."))
 	var/mob/living/basic/slime/slime = target

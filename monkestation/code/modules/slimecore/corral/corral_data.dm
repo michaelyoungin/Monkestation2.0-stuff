@@ -28,6 +28,8 @@
 		corner.connected_data = null
 		corral_corners -= corner
 	corral_corners = null
+	for(var/mob/living/basic/slime/slime as anything in managed_slimes)
+		UnregisterSignal(slime, COMSIG_ATOM_SUCKED)
 	managed_slimes = null
 
 	. = ..()
@@ -38,6 +40,7 @@
 
 	if(arrived in managed_slimes)
 		return
+	RegisterSignal(arrived, COMSIG_ATOM_SUCKED, PROC_REF(remove_cause_sucked))
 	managed_slimes |= arrived
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_entered(arrived)
@@ -50,6 +53,14 @@
 	if(turf in corral_turfs)
 		return
 
+	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
+	managed_slimes -= gone
+	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
+		upgrade.on_slime_exited(gone)
+
+/datum/corral_data/proc/remove_cause_sucked(atom/movable/gone)
+
+	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
 	managed_slimes -= gone
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_exited(gone)
