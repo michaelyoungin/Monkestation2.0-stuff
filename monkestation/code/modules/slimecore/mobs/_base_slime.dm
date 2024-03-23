@@ -322,6 +322,13 @@
 			my_our_turf.pollution.touch_act(src)
 	. = ..()
 
+/mob/living/basic/slime/proc/apply_water()
+	adjustBruteLoss(rand(15,20))
+	if(!client)
+		if(buckled)
+			unbuckle_mob(buckled, TRUE)
+	return
+
 /mob/living/basic/slime/rainbow
 	current_color = /datum/slime_color/rainbow
 

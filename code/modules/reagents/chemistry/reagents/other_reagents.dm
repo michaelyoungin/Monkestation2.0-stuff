@@ -216,6 +216,9 @@
 	for(var/mob/living/simple_animal/slime/exposed_slime in exposed_turf)
 		exposed_slime.apply_water()
 
+	for(var/mob/living/basic/slime/exposed_slime in exposed_turf)
+		exposed_slime.apply_water()
+
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
 	if(hotspot && !isspaceturf(exposed_turf))
 		if(exposed_turf.air)
