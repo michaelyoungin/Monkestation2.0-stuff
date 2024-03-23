@@ -117,6 +117,8 @@ GLOBAL_LIST_INIT(biomass_unlocks, list())
 		items += list(initial(printable.name) = printable_image)
 		item_names[initial(printable.name)] = printable_type
 
+		recyclable_types += list(printable_type = 1)
+
 	var/pick = show_radial_menu(user, src, items, custom_check = FALSE, require_near = TRUE, tooltips = TRUE)
 
 	if(!pick)
