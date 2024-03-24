@@ -193,6 +193,11 @@
 	if(!has_buckled_mobs())
 		return
 	for(var/m in buckled_mobs)
+		if(isliving(m))
+			var/mob/living/living = m
+			if(!living.buckled) //this somehow happens?
+				buckled_mobs -= m
+				continue
 		unbuckle_mob(m, force)
 
 //Handle any extras after buckling

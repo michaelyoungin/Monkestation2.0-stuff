@@ -69,6 +69,8 @@
 
 /datum/component/latch_feeding/proc/unlatch_target(living = TRUE, silent = FALSE)
 	var/mob/basic_mob = parent
+	if(!target)
+		return
 	if(basic_mob.buckled)
 		if(!living)
 			to_chat(basic_mob, "<span class='warning'>[pick("This subject is incompatible", \
@@ -79,9 +81,10 @@
 			basic_mob.visible_message(span_warning("[basic_mob] lets go of [basic_mob.buckled]!"), \
 							span_notice("<i>I stopped feeding.</i>"))
 
-	basic_mob.layer = initial(basic_mob.layer)
-	basic_mob.unbuckle_mob(basic_mob.buckled, force=TRUE)
 	REMOVE_TRAIT(target, TRAIT_LATCH_FEEDERED, "latch_feeding")
+	basic_mob.layer = initial(basic_mob.layer)
+	if(basic_mob.buckled)
+		basic_mob.buckled.unbuckle_mob(basic_mob, force=TRUE)
 
 /datum/component/latch_feeding/proc/check_buckled(mob/living/source, atom/movable/new_buckled)
 	if(!new_buckled && !unlatching)
