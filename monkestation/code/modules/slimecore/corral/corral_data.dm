@@ -30,6 +30,7 @@
 	corral_corners = null
 	for(var/mob/living/basic/slime/slime as anything in managed_slimes)
 		UnregisterSignal(slime, COMSIG_ATOM_SUCKED)
+		UnregisterSignal(slime, COMSIG_LIVING_DEATH)
 	managed_slimes = null
 
 	. = ..()
@@ -38,9 +39,16 @@
 	if(!istype(arrived, /mob/living/basic/slime))
 		return
 
+	if(isliving(arrived))
+		var/mob/living/living = arrived
+		if(living.stat == DEAD)
+			return
+
 	if(arrived in managed_slimes)
 		return
+
 	RegisterSignal(arrived, COMSIG_ATOM_SUCKED, PROC_REF(remove_cause_sucked))
+	RegisterSignal(arrived, COMSIG_LIVING_DEATH, PROC_REF(remove_cause_sucked))
 	managed_slimes |= arrived
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_entered(arrived, src)
@@ -54,6 +62,7 @@
 		return
 
 	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
+	UnregisterSignal(slime, COMSIG_LIVING_DEATH)
 	managed_slimes -= gone
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_exited(gone)
@@ -61,6 +70,7 @@
 /datum/corral_data/proc/remove_cause_sucked(atom/movable/gone)
 
 	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
+	UnregisterSignal(slime, COMSIG_LIVING_DEATH)
 	managed_slimes -= gone
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_exited(gone)

@@ -237,6 +237,7 @@
 	ai_controller.set_ai_status(AI_STATUS_ON)
 
 	var/mob/living/basic/slime/new_slime = new(loc, current_color.type)
+	new_slime.mutation_chance = mutation_chance
 
 /mob/living/basic/slime/proc/start_mutating()
 	if(!pick_mutation())
