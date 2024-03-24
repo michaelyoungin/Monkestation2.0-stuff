@@ -47,6 +47,9 @@
 	. = ..()
 	var/list/data = list()
 	if(!linked_data)
+		data["slimes"] = list()
+		data["corral_upgrades"] = list()
+		data["buyable_upgrades"] = list()
 		return data
 
 	data["slimes"] = list()

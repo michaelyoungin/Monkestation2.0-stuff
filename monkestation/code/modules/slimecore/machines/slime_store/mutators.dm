@@ -21,3 +21,21 @@
 	desc = "Adds the Radioactive Slime mutation to a single slime."
 	item_path = /obj/item/slime_mutation_syringe/radioactive
 	cost = 5000
+
+/datum/slime_store_item/neverchanging_mutation
+	name = "Radioactive Slime Mutation Syringe"
+	desc = "Adds the Radioactive Slime mutation to a single slime."
+	item_path = /obj/item/slime_mutation_syringe/never_evolving
+	cost = 2500
+
+/datum/slime_store_item/noooze_mutation
+	name = "No Ooze Mutation Syringe"
+	desc = "Adds the No Ooze Slime mutation to a single slime."
+	item_path = /obj/item/slime_mutation_syringe/never_ooze
+	cost = 2500
+
+/datum/slime_store_item/random_color_mutator
+	name = "Random Color Mutation Syringe"
+	desc = "Adds the No Ooze Slime mutation to a single slime."
+	item_path = /obj/item/slime_mutation_syringe_random
+	cost = 12000

@@ -40,3 +40,33 @@
 /obj/item/slime_mutation_syringe/radioactive
 	name = "radioactive slime mutation syringe"
 	infusing_trait_path = /datum/slime_trait/radioactive
+
+/obj/item/slime_mutation_syringe/never_evolving
+	name = "never splitting slime mutation syringe"
+	infusing_trait_path = /datum/slime_trait/never_evolving
+
+/obj/item/slime_mutation_syringe/never_ooze
+	name = "never ooze slime mutation syringe"
+	infusing_trait_path = /datum/slime_trait/never_ooze
+
+
+/obj/item/slime_mutation_syringe_random
+	name = "slime mutation syringe"
+	desc = "Infuses a mutation into a slime."
+
+	icon = 'monkestation/code/modules/slimecore/icons/slimes.dmi'
+	icon_state = "mutation_syringe"
+
+	/// have we been used?
+	var/used = FALSE
+
+
+/obj/item/slime_mutation_syringe_random/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(used)
+		return
+	if(!istype(target, /mob/living/basic/slime))
+		return
+
+	var/mob/living/basic/slime/slime = target
+	slime.start_mutating(TRUE)

@@ -182,7 +182,7 @@
 			.+= mutable_appearance(worn_accessory.accessory_icon, "[worn_accessory.accessory_icon_state]-baby", layer + 0.15, src, appearance_flags = (KEEP_APART | RESET_COLOR))
 
 /mob/living/basic/slime/proc/check_secretion()
-	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME) || (slime_flags & MUTATING_SLIME))
+	if((!(slime_flags & ADULT_SLIME)) || (slime_flags & STORED_SLIME) || (slime_flags & MUTATING_SLIME) || (slime_flags & NOOOZE_SLIME))
 		return FALSE
 	if(stat == DEAD)
 		return FALSE
@@ -238,9 +238,11 @@
 
 	var/mob/living/basic/slime/new_slime = new(loc, current_color.type)
 	new_slime.mutation_chance = mutation_chance
+	for(var/datum/slime_trait/trait as anything in slime_traits)
+		new_slime.add_trait(trait.type)
 
-/mob/living/basic/slime/proc/start_mutating()
-	if(!pick_mutation())
+/mob/living/basic/slime/proc/start_mutating(random = FALSE)
+	if(!pick_mutation(random))
 		return FALSE
 
 	ai_controller.set_ai_status(AI_STATUS_OFF)
@@ -299,6 +301,8 @@
 	return TRUE
 
 /mob/living/basic/slime/proc/attempt_change(datum/source, hunger_precent)
+	if(slime_flags & NOEVOLVE_SLIME)
+		return
 	if(prob(mutation_chance)) // we try to mutate 30% of the time
 		if(!start_mutating())
 			start_split()

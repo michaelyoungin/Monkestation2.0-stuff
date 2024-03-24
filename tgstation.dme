@@ -6769,6 +6769,8 @@
 #include "monkestation\code\modules\slimecore\slime_traits\_base_trait.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\cleaner.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\endisnigh.dm"
+#include "monkestation\code\modules\slimecore\slime_traits\never_ooze.dm"
+#include "monkestation\code\modules\slimecore\slime_traits\never_split.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\polluter.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\radioactive.dm"
 #include "monkestation\code\modules\slimecore\slime_traits\slime_cat.dm"
