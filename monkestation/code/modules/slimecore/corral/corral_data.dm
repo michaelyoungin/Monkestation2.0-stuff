@@ -62,7 +62,7 @@
 		return
 
 	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
-	UnregisterSignal(slime, COMSIG_LIVING_DEATH)
+	UnregisterSignal(gone, COMSIG_LIVING_DEATH)
 	managed_slimes -= gone
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_exited(gone)
@@ -70,7 +70,7 @@
 /datum/corral_data/proc/remove_cause_sucked(atom/movable/gone)
 
 	UnregisterSignal(gone, COMSIG_ATOM_SUCKED)
-	UnregisterSignal(slime, COMSIG_LIVING_DEATH)
+	UnregisterSignal(gone, COMSIG_LIVING_DEATH)
 	managed_slimes -= gone
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
 		upgrade.on_slime_exited(gone)

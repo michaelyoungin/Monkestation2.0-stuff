@@ -281,7 +281,6 @@
 				break
 
 		var/target_stat = FALSE
-		var/buckled_to = FALSE
 		if(isliving(target))
 			var/mob/living/living_target = target
 			target_stat = living_target.stat
