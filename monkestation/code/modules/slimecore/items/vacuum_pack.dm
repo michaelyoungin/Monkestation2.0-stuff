@@ -284,7 +284,6 @@
 		if(isliving(target))
 			var/mob/living/living_target = target
 			target_stat = living_target.stat
-			buckled_to = living_target.buckled
 
 		if(can_recycle && (!is_type_in_typecache(target, pack.storable_objects) || target_stat != CONSCIOUS))
 			if(!(VACUUM_PACK_UPGRADE_BIOMASS in pack.upgrades))
