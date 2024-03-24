@@ -49,6 +49,8 @@
 /obj/machinery/plumbing/ooze_compressor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle Repeated Extract Compression"
+	context[SCREENTIP_CONTEXT_LMB] = "Select a normal extract to make"
+	context[SCREENTIP_CONTEXT_RMB] = "Select a crossbreed to make"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/plumbing/ooze_compressor/create_reagents(max_vol, flags)
