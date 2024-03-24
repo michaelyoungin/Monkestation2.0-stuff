@@ -391,7 +391,8 @@
 	if(istype(spewed, /mob/living/basic/slime))
 		var/mob/living/basic/slime/slime = spewed
 		slime.slime_flags &= ~STORED_SLIME
-		slime.ai_controller.set_ai_status(AI_STATUS_ON)
+		if(slime.ai_controller)
+			slime.ai_controller.set_ai_status(AI_STATUS_ON)
 		if(VACUUM_PACK_UPGRADE_STASIS in pack.upgrades)
 			REMOVE_TRAIT(slime, TRAIT_SLIME_STASIS, "vacuum_pack_stasis")
 
@@ -450,8 +451,9 @@
 		user.visible_message(span_warning("[user] sucks [target] into their [pack]!"), span_notice("You successfully suck [target] into your [src]."))
 	var/mob/living/basic/slime/slime = target
 	slime.slime_flags |= STORED_SLIME
-	slime.ai_controller.set_ai_status(AI_STATUS_OFF)
-	slime.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, null)
+	if(slime.ai_controller)
+		slime.ai_controller.set_ai_status(AI_STATUS_OFF)
+		slime.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, null)
 
 /obj/item/vacuum_nozzle/proc/start_busting(mob/living/basic/revenant/revenant, mob/living/user)
 	revenant.visible_message(span_warning("[user] starts sucking [revenant] into their [src]!"), span_userdanger("You are being sucked into [user]'s [src]!"))

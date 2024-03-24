@@ -9,7 +9,7 @@
 	density = FALSE
 	idle_power_usage = 10
 	active_power_usage = 1000
-	buffer = 300
+	buffer = 3000
 	category="Distribution"
 	reagent_flags = NO_REACT
 

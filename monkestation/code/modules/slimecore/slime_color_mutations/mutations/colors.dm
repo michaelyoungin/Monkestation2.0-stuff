@@ -31,7 +31,7 @@
 	latch_needed = list(/mob/living/basic/xenofauna/dron = 65)
 
 /datum/slime_mutation_data/yellow
-	output = /datum/slime_color/oil
+	output = /datum/slime_color/yellow
 	needed_items = list(/obj/item/stock_parts/cell)
 
 /datum/slime_mutation_data/green
