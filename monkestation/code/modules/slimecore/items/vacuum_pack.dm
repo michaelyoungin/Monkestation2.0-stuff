@@ -363,6 +363,7 @@
 		var/list/items_stored = list()
 		for(var/atom/movable/stored_obj in pack.stored)
 			var/image/stored_image = image(icon = stored_obj.icon, icon_state = stored_obj.icon_state)
+			stored_image.color = stored_obj.color
 			items += list(stored_obj.name = stored_image)
 			items_stored[stored_obj.name] = stored_obj
 
