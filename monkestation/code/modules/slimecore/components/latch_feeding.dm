@@ -80,7 +80,7 @@
 							span_notice("<i>I stopped feeding.</i>"))
 
 	basic_mob.layer = initial(basic_mob.layer)
-	basic_mob.buckled?.unbuckle_mob(basic_mob, force=TRUE)
+	basic_mob.unbuckle_mob(basic_mob.buckled, force=TRUE)
 	REMOVE_TRAIT(target, TRAIT_LATCH_FEEDERED, "latch_feeding")
 
 /datum/component/latch_feeding/proc/check_buckled(mob/living/source, atom/movable/new_buckled)

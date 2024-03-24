@@ -54,7 +54,7 @@
 		var/list/slime_data = list()
 		slime_data += list(
 			"name" = slime.name,
-			"health" = round(slime.health / slime.maxHealth) * 100,
+			"health" = round((slime.health / slime.maxHealth) * 100),
 			"slime_color" = capitalize(slime.current_color.name),
 			"hunger_precent" = slime.hunger_precent,
 			"mutation_chance" = slime.mutation_chance,

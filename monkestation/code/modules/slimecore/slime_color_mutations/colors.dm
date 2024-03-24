@@ -24,7 +24,7 @@
 		/datum/slime_mutation_data/pink,
 		)
 
-/datum/slime_color/grey/on_first_unlock()
+/datum/slime_color/blue/on_first_unlock()
 	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/meatbeast = 2)
 	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/diyaab = 1)
 	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/thinbug = 1)
