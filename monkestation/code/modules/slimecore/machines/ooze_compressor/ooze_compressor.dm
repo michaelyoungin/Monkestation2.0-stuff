@@ -44,6 +44,12 @@
 			choice_to_datum |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = stored_recipe)
 
 	AddComponent(/datum/component/plumbing/ooze_compressor, bolt, layer)
+	register_context()
+
+/obj/machinery/plumbing/ooze_compressor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle Repeated Extract Compression"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/plumbing/ooze_compressor/create_reagents(max_vol, flags)
 	. = ..()
@@ -139,9 +145,11 @@
 		reagents.clear_reagents()
 
 /obj/machinery/plumbing/ooze_compressor/AltClick(mob/user)
+	if(anchored)
+		visible_message(span_notice("[user] presses a button turning the repeat recipe system [repeat_recipe ? "Off" : "On"]"))
+		repeat_recipe = !repeat_recipe
+		return TRUE
 	. = ..()
-	visible_message(span_notice("[user] presses a button turning the repeat recipe system [repeat_recipe ? "Off" : "On"]"))
-	repeat_recipe = !repeat_recipe
 
 /obj/machinery/plumbing/ooze_compressor/proc/change_recipe(mob/user, cross_breed = FALSE)
 	var/choice

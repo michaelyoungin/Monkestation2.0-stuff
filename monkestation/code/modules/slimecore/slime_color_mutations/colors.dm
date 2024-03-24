@@ -40,6 +40,11 @@
 		/datum/slime_mutation_data/cerulean,
 		)
 
+
+/datum/slime_color/dark_blue/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/cockroach/iceroach = 1)
+	GLOB.biomass_unlocks |= list(/mob/living/basic/cockroach/recursive = 1)
+
 /datum/slime_color/green
 	name = "green"
 	icon_prefix = "green"
@@ -48,6 +53,9 @@
 	possible_mutations = list(
 		/datum/slime_mutation_data/black,
 		)
+
+/datum/slime_color/green/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/thoom = 2)
 
 /datum/slime_color/metal
 	name = "metal"
@@ -60,6 +68,9 @@
 		/datum/slime_mutation_data/gold,
 		)
 
+/datum/slime_color/metal/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/meatbeast = 2)
+
 /datum/slime_color/purple
 	name = "purple"
 	icon_prefix = "purple"
@@ -70,6 +81,10 @@
 		/datum/slime_mutation_data/dark_blue,
 		/datum/slime_mutation_data/darkpurple,
 		)
+
+/datum/slime_color/purple/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/greeblefly = 2)
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/diyaab = 1)
 
 /datum/slime_color/orange
 	name = "orange"
@@ -82,6 +97,9 @@
 		/datum/slime_mutation_data/red,
 		)
 
+/datum/slime_color/orange/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/lavadog = 1)
+
 /datum/slime_color/pink
 	name = "pink"
 	icon_prefix = "pink"
@@ -90,6 +108,9 @@
 	possible_mutations = list(
 		/datum/slime_mutation_data/lightpink,
 		)
+
+/datum/slime_color/pink/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/voxslug = 1)
 
 /datum/slime_color/darkpurple
 	name = "dark purple"
@@ -102,6 +123,9 @@
 		/datum/slime_mutation_data/orange,
 		)
 
+/datum/slime_color/darkpurple/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/possum = 1)
+
 /datum/slime_color/red
 	name = "red"
 	icon_prefix = "red"
@@ -110,6 +134,9 @@
 	possible_mutations = list(
 		/datum/slime_mutation_data/oil,
 		)
+
+/datum/slime_color/darkpurple/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/dron = 1)
 
 /datum/slime_color/yellow
 	name = "yellow"
@@ -141,6 +168,9 @@
 		/datum/slime_mutation_data/metal,
 		/datum/slime_mutation_data/blue,
 		)
+
+/datum/slime_color/silver/on_first_unlock()
+	GLOB.biomass_unlocks |= list(/mob/living/basic/cockroach/iceroach = 1)
 
 /datum/slime_color/lightpink
 	name = "light pink"

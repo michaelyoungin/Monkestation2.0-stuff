@@ -24,7 +24,7 @@
 	var/tile_placed = FALSE
 
 	var/processes = 0
-	var/processes_required = 25
+	var/processes_required = 5
 
 	/// Base amount to drain
 	var/drain_flat = 20

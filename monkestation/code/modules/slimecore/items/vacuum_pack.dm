@@ -299,9 +299,11 @@
 				to_chat(user, span_warning("[target] is struggling far too much for you to suck it in!"))
 				return
 
-			if(buckled_to || target.has_buckled_mobs())
-				to_chat(user, span_warning("[target] is attached to something!"))
-				return
+			if(isliving(target))
+				var/mob/living/living = target
+				if(living.buckled)
+					living.buckled.unbuckle_mob(target, TRUE)
+			target.unbuckle_all_mobs(TRUE)
 
 			if(!do_after(user, pack.speed, target, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
 				return

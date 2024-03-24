@@ -250,6 +250,7 @@
 
 
 	addtimer(CALLBACK(src, PROC_REF(finish_mutating)), 30 SECONDS)
+	mutation_chance = 30
 	return TRUE
 
 /mob/living/basic/slime/proc/change_color(datum/slime_color/new_color)
@@ -301,6 +302,7 @@
 		if(!start_mutating())
 			start_split()
 	else
+		mutation_chance += 10
 		start_split()
 
 /mob/living/basic/slime/attackby(obj/item/attacking_item, mob/living/user, params)

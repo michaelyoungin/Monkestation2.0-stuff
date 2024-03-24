@@ -63,7 +63,7 @@
 		sell_extract(extract)
 		return
 
-	else if(istype(I, /obj/item/storage/bag/bio))
+	else if(istype(I, /obj/item/storage/bag/xeno))
 		if(tgui_alert(user, "Are you sure you want to sell all extracts from [I]?", "<3?", list("Yes", "No")) != "Yes")
 			return
 

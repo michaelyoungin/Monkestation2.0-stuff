@@ -9,7 +9,7 @@
 
 /obj/machinery/slime_pen_controller
 	name = "slime pen management console"
-	desc = "It seems most of the features are locked down, the developers must have been pretty lazy. Can turn the ooze sucker on and off though."
+	desc = "It seems most of the features are locked down, the developers must have been pretty lazy. Can turn the ooze sucker on and off though. Can link a sucker to this using a multitool."
 
 	icon = 'monkestation/code/modules/slimecore/icons/machinery.dmi'
 	base_icon_state = "slime_panel"
@@ -21,11 +21,20 @@
 
 /obj/machinery/slime_pen_controller/Initialize(mapload)
 	. = ..()
+	register_context()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/slime_pen_controller/LateInitialize()
 	. = ..()
 	locate_machinery()
+
+
+/obj/machinery/slime_pen_controller/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+
+	if(linked_sucker)
+		context[SCREENTIP_CONTEXT_RMB] = "Toggle Linked Scrubber"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/slime_pen_controller/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -141,10 +150,11 @@
 		return
 
 /obj/machinery/slime_pen_controller/attack_hand_secondary(mob/user, list/modifiers)
-	. = ..()
 	if(linked_sucker)
 		visible_message(span_notice("[user] fiddles with the [src] toggling the pens ooze sucker."))
 		linked_sucker.toggle_state()
+		return TRUE
+	. = ..()
 
 /obj/machinery/slime_pen_controller/attackby(obj/item/weapon, mob/user, params)
 	if(weapon.tool_behaviour == TOOL_MULTITOOL)

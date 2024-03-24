@@ -43,7 +43,7 @@
 	RegisterSignal(arrived, COMSIG_ATOM_SUCKED, PROC_REF(remove_cause_sucked))
 	managed_slimes |= arrived
 	for(var/datum/corral_upgrade/upgrade as anything in corral_upgrades)
-		upgrade.on_slime_entered(arrived)
+		upgrade.on_slime_entered(arrived, src)
 
 /datum/corral_data/proc/check_exited(turf/source, atom/movable/gone, direction)
 	if(!istype(gone, /mob/living/basic/slime))
