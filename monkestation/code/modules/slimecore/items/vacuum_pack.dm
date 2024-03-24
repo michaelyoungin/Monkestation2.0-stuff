@@ -250,6 +250,7 @@
 
 	if(isturf(user.loc))
 		ADD_TRAIT(spawned, VACPACK_THROW, "vacpack")
+		spawned.movement_type |= PHASING
 		spawned.throw_at(target, min(get_dist(user, target), (pack.illegal ? 5 : 11)), 1, user, gentle = TRUE) //Gentle so eggs have 50% instead of 12.5% to spawn a chick
 
 	user.visible_message(span_warning("[user] shoots [spawned] out their [src]!"), span_notice("You fabricate and shoot [spawned] out of your [src]."))
@@ -383,6 +384,7 @@
 
 	if(isturf(user.loc))
 		ADD_TRAIT(spewed, VACPACK_THROW, "vacpack")
+		spewed.movement_type |= PHASING
 		spewed.throw_at(target, min(get_dist(user, target), (pack.illegal ? 5 : 11)), 1, user)
 		if(prob(99))
 			playsound(spewed, 'sound/misc/woohoo.ogg', 50, TRUE)

@@ -104,7 +104,10 @@
 		stop_feeding()
 		return
 
-	living_target.apply_damage(damage_amount, damage_type, spread_damage = TRUE)
+	if(iscarbon(living_target))
+		living_target.apply_damage(damage_amount, damage_type, spread_damage = TRUE)
+	else
+		living_target.apply_damage(damage_amount, BRUTE, spread_damage = TRUE)
 
 	if(parent) // ??? I was getting runtimes for no parent but IDK how
 		SEND_SIGNAL(parent, COMSIG_MOB_FEED, target, hunger_restore)
