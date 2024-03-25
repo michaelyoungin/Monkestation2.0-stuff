@@ -190,6 +190,9 @@
 	if(!(choice in choice_to_datum))
 		return
 
+	if(compressing)
+		return
+
 	current_recipe = choice_to_datum[choice]
 	reagents_for_recipe = list()
 	reagents_for_recipe += current_recipe.required_oozes
