@@ -5355,7 +5355,7 @@
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "aJT" = (
-/mob/living/simple_animal/slime,
+/mob/living/basic/slime,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "aJV" = (
@@ -52466,12 +52466,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "pUb" = (
-/mob/living/simple_animal/slime,
 /obj/machinery/plumbing/ooze_sucker{
 	mapping_id = "1";
 	dir = 1
 	},
 /obj/machinery/light/floor/has_bulb,
+/mob/living/basic/slime,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "pUj" = (
