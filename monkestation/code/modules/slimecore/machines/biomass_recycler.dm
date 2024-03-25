@@ -105,19 +105,17 @@ GLOBAL_LIST_INIT(biomass_unlocks, list())
 /obj/machinery/biomass_recycler/interact(mob/user)
 	var/list/items = list()
 	var/list/item_names = list()
+	for(var/printable_type in GLOB.biomass_unlocks)
+		printable_types |= printable_type
+		printable_types[printable_type] = GLOB.biomass_unlocks[printable_type]
+
+		recyclable_types |= list(printable_type = 1)
+
 	for(var/printable_type in printable_types)
 		var/atom/movable/printable = printable_type
 		var/image/printable_image = image(icon = initial(printable.icon), icon_state = initial(printable.icon_state))
 		items += list(initial(printable.name) = printable_image)
 		item_names[initial(printable.name)] = printable_type
-
-	for(var/printable_type in GLOB.biomass_unlocks)
-		var/atom/movable/printable = printable_type
-		var/image/printable_image = image(icon = initial(printable.icon), icon_state = initial(printable.icon_state))
-		items += list(initial(printable.name) = printable_image)
-		item_names[initial(printable.name)] = printable_type
-
-		recyclable_types += list(printable_type = 1)
 
 	var/pick = show_radial_menu(user, src, items, custom_check = FALSE, require_near = TRUE, tooltips = TRUE)
 

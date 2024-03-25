@@ -173,6 +173,8 @@
 
 /obj/effect/corral_fence/CanPass(atom/movable/mover, border_dir)
 	. = ..()
+	if(mover.pulledby)
+		return TRUE
 	if((istype(mover, /mob/living/basic/slime) || ismonkey(mover) || istype(mover, /mob/living/basic/xenofauna)) && !HAS_TRAIT(mover, VACPACK_THROW))
 		return FALSE
 	return TRUE

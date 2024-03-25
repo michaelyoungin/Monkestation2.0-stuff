@@ -157,15 +157,15 @@
 	var/prefix = "grey"
 	if(icon_state_override)
 		prefix = icon_state_override
+	else
+		prefix = current_color.icon_prefix
+
 	if(slime_flags & ADULT_SLIME)
 		icon_state = "[prefix] adult slime"
 		icon_dead = "[prefix] baby slime dead"
 	else
 		icon_state = "[prefix] baby slime"
 		icon_dead = "[prefix] baby slime dead"
-
-	if(!(slime_flags & OVERWRITES_COLOR))
-		color = current_color.slime_color
 
 	if(stat == DEAD)
 		icon_state = icon_dead
