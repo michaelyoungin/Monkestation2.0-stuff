@@ -13,6 +13,6 @@
 		var/atom/target = controller.blackboard[target_key]
 		var/mob/living/basic/basic_mob = controller.pawn
 		if(basic_mob.CanReach(target) && !HAS_TRAIT(target, TRAIT_LATCH_FEEDERED))
-			basic_mob.AddComponent(/datum/component/latch_feeding, target, TOX, 5, 10, FALSE)
+			basic_mob.AddComponent(/datum/component/latch_feeding, target, TOX, 2, 4, FALSE)
 	. = ..()
 
