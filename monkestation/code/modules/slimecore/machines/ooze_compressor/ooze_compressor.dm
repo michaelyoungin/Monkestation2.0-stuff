@@ -1,3 +1,16 @@
+#define CROSSBREED_BASE_PATHS list(\
+/datum/compressor_recipe/crossbreed/burning,\
+/datum/compressor_recipe/crossbreed/charged,\
+/datum/compressor_recipe/crossbreed/chilling,\
+/datum/compressor_recipe/crossbreed/consuming,\
+/datum/compressor_recipe/crossbreed/industrial,\
+/datum/compressor_recipe/crossbreed/prismatic,\
+/datum/compressor_recipe/crossbreed/regenerative,\
+/datum/compressor_recipe/crossbreed/reproductive,\
+/datum/compressor_recipe/crossbreed/selfsustaining,\
+/datum/compressor_recipe/crossbreed/stabilized,\
+)
+
 /obj/machinery/plumbing/ooze_compressor
 	name = "ooze compressor"
 	desc = "Compresses ooze into extracts."
@@ -21,6 +34,7 @@
 	var/datum/compressor_recipe/current_recipe
 
 	var/static/list/recipe_choices = list()
+	var/static/list/base_choices = list()
 	var/static/list/cross_breed_choices = list()
 	var/static/list/choice_to_datum = list()
 
@@ -33,15 +47,26 @@
 			choice_to_datum |= list("[initial(stored_recipe.output_item.name)]" = stored_recipe)
 
 	if(!length(cross_breed_choices))
-		for(var/datum/compressor_recipe/listed as anything in (subtypesof(/datum/compressor_recipe/crossbreed)))
+		for(var/datum/compressor_recipe/listed as anything in CROSSBREED_BASE_PATHS)
 			var/datum/compressor_recipe/stored_recipe = new listed
 			var/obj/item/slimecross/crossbreed = stored_recipe.output_item
 			var/image/new_image = image(icon = initial(stored_recipe.output_item.icon), icon_state = initial(stored_recipe.output_item.icon_state))
 			new_image.color = return_color_from_string(initial(crossbreed.colour))
 			if(initial(crossbreed.colour) == "rainbow")
 				new_image.rainbow_effect()
-			cross_breed_choices |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = new_image)
-			choice_to_datum |= list("[initial(crossbreed.colour)] [initial(stored_recipe.output_item.name)]" = stored_recipe)
+			base_choices |= list("[initial(stored_recipe.output_item.name)]" = new_image)
+			cross_breed_choices |= list("[initial(stored_recipe.output_item.name)]" = list())
+
+			for(var/datum/compressor_recipe/subtype as anything in subtypesof(listed))
+				var/datum/compressor_recipe/subtype_stored = new subtype
+				var/obj/item/slimecross/subtype_breed = subtype_stored.output_item
+				var/image/subtype_image = image(icon = initial(subtype_stored.output_item.icon), icon_state = initial(subtype_stored.output_item.icon_state))
+				subtype_image.color = return_color_from_string(initial(subtype_breed.colour))
+				if(initial(subtype_breed.colour) == "rainbow")
+					subtype_image.rainbow_effect()
+
+				cross_breed_choices["[initial(stored_recipe.output_item.name)]"] |= list("[initial(subtype_breed.colour)] [initial(subtype_stored.output_item.name)]" = subtype_image)
+				choice_to_datum |= list("[initial(subtype_breed.colour)] [initial(subtype_stored.output_item.name)]" = subtype_stored)
 
 	AddComponent(/datum/component/plumbing/ooze_compressor, bolt, layer)
 	register_context()
@@ -156,7 +181,10 @@
 /obj/machinery/plumbing/ooze_compressor/proc/change_recipe(mob/user, cross_breed = FALSE)
 	var/choice
 	if(cross_breed)
-		choice = show_radial_menu(user, src, cross_breed_choices, require_near = TRUE, tooltips = TRUE)
+		var/base_choice = show_radial_menu(user, src, base_choices, require_near = TRUE, tooltips = TRUE)
+		if(!base_choice)
+			return
+		choice = show_radial_menu(user, src, cross_breed_choices[base_choice], require_near = TRUE, tooltips = TRUE)
 	else
 		choice = show_radial_menu(user, src, recipe_choices, require_near = TRUE, tooltips = TRUE)
 	if(!(choice in choice_to_datum))
@@ -165,3 +193,5 @@
 	current_recipe = choice_to_datum[choice]
 	reagents_for_recipe = list()
 	reagents_for_recipe += current_recipe.required_oozes
+
+#undef CROSSBREED_BASE_PATHS

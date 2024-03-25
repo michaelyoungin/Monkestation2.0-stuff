@@ -353,4 +353,4 @@
 	. = ..()
 	if(HAS_TRAIT(src, VACPACK_THROW))
 		REMOVE_TRAIT(src, VACPACK_THROW, "vacpack")
-		movement_type &= ~PHASING
+		pass_flags &= ~PASSMOB

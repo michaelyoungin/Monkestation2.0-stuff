@@ -1,152 +1,155 @@
-/datum/compressor_recipe/crossbreed/chilling_grey
+/datum/compressor_recipe/crossbreed/chilling
+	output_item = /obj/item/slimecross/chilling/grey
+
+/datum/compressor_recipe/crossbreed/chilling/grey
 	required_oozes = list(
-		/datum/reagent/slime_ooze/grey = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/grey = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/grey
 
-/datum/compressor_recipe/crossbreed/chilling_orange
+/datum/compressor_recipe/crossbreed/chilling/orange
 	required_oozes = list(
-		/datum/reagent/slime_ooze/darkblue = 100,
-		/datum/reagent/slime_ooze/orange = 100,
+		/datum/reagent/slime_ooze/darkblue = 1000,
+		/datum/reagent/slime_ooze/orange = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/orange
 
-/datum/compressor_recipe/crossbreed/chilling_metal
+/datum/compressor_recipe/crossbreed/chilling/metal
 	required_oozes = list(
-		/datum/reagent/slime_ooze/darkblue = 100,
-		/datum/reagent/slime_ooze/metal = 100,
+		/datum/reagent/slime_ooze/darkblue = 1000,
+		/datum/reagent/slime_ooze/metal = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/metal
 
-/datum/compressor_recipe/crossbreed/chilling_purple
+/datum/compressor_recipe/crossbreed/chilling/purple
 	required_oozes = list(
-		/datum/reagent/slime_ooze/purple = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/purple = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/purple
 
-/datum/compressor_recipe/crossbreed/chilling_blue
+/datum/compressor_recipe/crossbreed/chilling/blue
 	required_oozes = list(
-		/datum/reagent/slime_ooze/blue = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/blue = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/blue
 
-/datum/compressor_recipe/crossbreed/chilling_yellow
+/datum/compressor_recipe/crossbreed/chilling/yellow
 	required_oozes = list(
-		/datum/reagent/slime_ooze/yellow = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/yellow = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/yellow
 
-/datum/compressor_recipe/crossbreed/chilling_darkpurple
+/datum/compressor_recipe/crossbreed/chilling/darkpurple
 	required_oozes = list(
-		/datum/reagent/slime_ooze/darkpurple = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/darkpurple = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/darkpurple
 
-/datum/compressor_recipe/crossbreed/chilling_darkblue
+/datum/compressor_recipe/crossbreed/chilling/darkblue
 	required_oozes = list(
-		/datum/reagent/slime_ooze/darkblue = 200,
+		/datum/reagent/slime_ooze/darkblue = 2000,
 		)
 	output_item = /obj/item/slimecross/chilling/darkblue
 
-/datum/compressor_recipe/crossbreed/chilling_silver
+/datum/compressor_recipe/crossbreed/chilling/silver
 	required_oozes = list(
-		/datum/reagent/slime_ooze/silver = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/silver = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/silver
 
-/datum/compressor_recipe/crossbreed/chilling_bluespace
+/datum/compressor_recipe/crossbreed/chilling/bluespace
 	required_oozes = list(
-		/datum/reagent/slime_ooze/bluespace = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/bluespace = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/bluespace
 
-/datum/compressor_recipe/crossbreed/chilling_sepia
+/datum/compressor_recipe/crossbreed/chilling/sepia
 	required_oozes = list(
-		/datum/reagent/slime_ooze/sepia = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/sepia = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/sepia
 
-/datum/compressor_recipe/crossbreed/chilling_pyrite
+/datum/compressor_recipe/crossbreed/chilling/pyrite
 	required_oozes = list(
-		/datum/reagent/slime_ooze/pyrite = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/pyrite = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/pyrite
 
-/datum/compressor_recipe/crossbreed/chilling_red
+/datum/compressor_recipe/crossbreed/chilling/red
 	required_oozes = list(
-		/datum/reagent/slime_ooze/red = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/red = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/red
 
-/datum/compressor_recipe/crossbreed/chilling_green
+/datum/compressor_recipe/crossbreed/chilling/green
 	required_oozes = list(
-		/datum/reagent/slime_ooze/green = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/green = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/green
 
-/datum/compressor_recipe/crossbreed/chilling_pink
+/datum/compressor_recipe/crossbreed/chilling/pink
 	required_oozes = list(
-		/datum/reagent/slime_ooze/pink = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/pink = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/pink
 
-/datum/compressor_recipe/crossbreed/chilling_gold
+/datum/compressor_recipe/crossbreed/chilling/gold
 	required_oozes = list(
-		/datum/reagent/slime_ooze/gold = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/gold = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/gold
 
-/datum/compressor_recipe/crossbreed/chilling_oil
+/datum/compressor_recipe/crossbreed/chilling/oil
 	required_oozes = list(
-		/datum/reagent/slime_ooze/oil = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/oil = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/oil
 
-/datum/compressor_recipe/crossbreed/chilling_black
+/datum/compressor_recipe/crossbreed/chilling/black
 	required_oozes = list(
-		/datum/reagent/slime_ooze/black = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/black = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/black
 
-/datum/compressor_recipe/crossbreed/chilling_lightpink
+/datum/compressor_recipe/crossbreed/chilling/lightpink
 	required_oozes = list(
-		/datum/reagent/slime_ooze/lightpink = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/lightpink = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/lightpink
 
-/datum/compressor_recipe/crossbreed/chilling_adamantine
+/datum/compressor_recipe/crossbreed/chilling/adamantine
 	required_oozes = list(
-		/datum/reagent/slime_ooze/adamantine = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/adamantine = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/adamantine
 
-/datum/compressor_recipe/crossbreed/chilling_cerulean
+/datum/compressor_recipe/crossbreed/chilling/cerulean
 	required_oozes = list(
-		/datum/reagent/slime_ooze/cerulean = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/cerulean = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/cerulean
 
-/datum/compressor_recipe/crossbreed/chilling_rainbow
+/datum/compressor_recipe/crossbreed/chilling/rainbow
 	required_oozes = list(
-		/datum/reagent/slime_ooze/rainbow = 100,
-		/datum/reagent/slime_ooze/darkblue = 100,
+		/datum/reagent/slime_ooze/rainbow = 1000,
+		/datum/reagent/slime_ooze/darkblue = 1000,
 		)
 	output_item = /obj/item/slimecross/chilling/rainbow
