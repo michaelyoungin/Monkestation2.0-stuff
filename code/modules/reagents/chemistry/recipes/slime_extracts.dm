@@ -31,7 +31,7 @@
 	required_container = /obj/item/slime_extract/grey
 
 /datum/chemical_reaction/slime/slimespawn/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	var/mob/living/simple_animal/slime/S = new(get_turf(holder.my_atom), "grey")
+	var/mob/living/basic/slime/S = new(get_turf(holder.my_atom))
 	S.visible_message(span_danger("Infused with plasma, the core begins to quiver and grow, and a new baby slime emerges from it!"))
 	..()
 
@@ -46,7 +46,7 @@
 
 /datum/chemical_reaction/slime/slimemonkey/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	for(var/i in 1 to 3)
-		new /obj/item/food/monkeycube(get_turf(holder.my_atom))
+		new /obj/item/stack/biomass(get_turf(holder.my_atom))
 	..()
 
 //Green

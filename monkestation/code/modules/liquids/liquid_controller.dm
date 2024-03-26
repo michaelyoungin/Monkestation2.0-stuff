@@ -87,6 +87,9 @@ SUBSYSTEM_DEF(liquids)
 				temperature_queue -= temperature_turf
 				if(!temperature_turf.liquids)
 					continue
+				if(!temperature_turf.liquids.liquid_group)
+					qdel(temperature_turf.liquids)
+					continue
 				temperature_turf.liquids.liquid_group.act_on_queue(temperature_turf)
 		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 

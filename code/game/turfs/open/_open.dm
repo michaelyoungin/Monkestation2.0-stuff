@@ -216,6 +216,9 @@
 	for(var/mob/living/simple_animal/slime/M in src)
 		M.apply_water()
 
+	for(var/mob/living/basic/slime/M in src)
+		M.apply_water()
+
 	wash(CLEAN_WASH)
 	for(var/atom/movable/movable_content as anything in src)
 		if(ismopable(movable_content)) // Will have already been washed by the wash call above at this point.
