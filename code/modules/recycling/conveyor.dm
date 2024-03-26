@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
 
+// Monkestation edit for SteelStation
 /obj/machinery/conveyor/no_touch
 	id = "non_adjustable_belt" //stop those monsters from moving these belts
 
