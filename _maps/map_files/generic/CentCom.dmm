@@ -18671,7 +18671,7 @@
 /obj/structure/mineral_door/wood{
 	name = "Theprofit's Office"
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
 	id = "Theprofitlockdown"
 	},
 /turf/open/floor/iron/vaporwave,
@@ -18719,7 +18719,7 @@
 "bsr" = (
 /obj/structure/curtain,
 /obj/structure/barricade/wooden/crude,
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters/indestructible/preopen{
 	id = "Theprofitlockdown"
 	},
 /turf/closed/indestructible/fakeglass,
