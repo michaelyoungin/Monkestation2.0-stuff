@@ -20023,7 +20023,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/east,
-/turf/open/space/basic,
+/turf/open/floor/iron/vaporwave,
 /area/centcom/central_command_areas/admin)
 "fqs" = (
 /obj/machinery/door/airlock/centcom{
