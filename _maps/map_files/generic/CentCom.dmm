@@ -706,7 +706,6 @@
 /turf/open/floor/iron/white/corner{
 	dir = 1
 	})
-
 "abT" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -5528,16 +5527,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/abductor)
-"apw" = (
-/obj/machinery/door/poddoor/shutters/indestructible/preopen{
-	id = "donutstealthisid";
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/turf/open/floor/iron/dark/smooth_large,
-/area/centcom/central_command_areas/admin)
 "apx" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Hydroponics"
@@ -54115,7 +54104,7 @@ yhF
 yhF
 mUv
 yhF
-apw
+oMX
 qzu
 xUt
 eNq
