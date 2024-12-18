@@ -18671,9 +18671,6 @@
 /obj/structure/mineral_door/wood{
 	name = "Theprofit's Office"
 	},
-/obj/machinery/door/poddoor/shutters/indestructible/preopen{
-	id = "Theprofitlockdown"
-	},
 /turf/open/floor/iron/vaporwave,
 /area/centcom/central_command_areas/admin)
 "bnc" = (
@@ -18719,9 +18716,6 @@
 "bsr" = (
 /obj/structure/curtain,
 /obj/structure/barricade/wooden/crude,
-/obj/machinery/door/poddoor/shutters/indestructible/preopen{
-	id = "Theprofitlockdown"
-	},
 /turf/closed/indestructible/fakeglass,
 /area/centcom/central_command_areas/admin)
 "btE" = (
@@ -20029,12 +20023,6 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/button{
-	id = "Theprofitlockdown";
-	pixel_x = 23;
-	pixel_y = 8;
-	name = "Lockdown"
-	},
 /turf/open/space/basic,
 /area/centcom/central_command_areas/admin)
 "fqs" = (
