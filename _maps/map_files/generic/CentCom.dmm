@@ -23423,7 +23423,7 @@
 /area/centcom/central_command_areas/admin)
 "kSK" = (
 /obj/structure/mineral_door/wood,
-/turf/open/space/basic,
+/turf/open/floor/plating/rust,
 /area/centcom/central_command_areas/adminroom)
 "kSU" = (
 /obj/structure/mineral_door/wood{
