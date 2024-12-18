@@ -18671,7 +18671,7 @@
 /obj/structure/mineral_door/wood{
 	name = "Theprofit's Office"
 	},
-/obj/machinery/door/poddoor/shutters/indestructible/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Theprofitlockdown"
 	},
 /turf/open/floor/iron/vaporwave,
@@ -18719,7 +18719,7 @@
 "bsr" = (
 /obj/structure/curtain,
 /obj/structure/barricade/wooden/crude,
-/obj/machinery/door/poddoor/shutters/indestructible/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "Theprofitlockdown"
 	},
 /turf/closed/indestructible/fakeglass,
@@ -20029,12 +20029,11 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/button/door/directional/north{
-	name = "Emergency Assistants Fuck Off Button";
-	id = "donutstealthisid";
-	req_access = "cent_captain";
+/obj/machinery/button{
+	id = "Theprofitlockdown";
 	pixel_x = 23;
-	pixel_y = 6
+	pixel_y = 8;
+	name = "Lockdown"
 	},
 /turf/open/space/basic,
 /area/centcom/central_command_areas/admin)
